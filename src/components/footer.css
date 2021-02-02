@@ -1,0 +1,9 @@
+.footer-container {
+    display: flex;
+    align-items: flex-start;
+    max-width: 1300px;
+    justify-content: space-between;
+}
+
+.link-table {
+}

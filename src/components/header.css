@@ -1,0 +1,122 @@
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden; 
+}
+
+h1 {
+    font-size: 48px;
+}
+h3 {
+    font-size: 25px;
+}
+h1, h3, p {
+    text-align: center;
+    
+}
+
+p {
+    font-size: 18px;
+}
+
+.header-template {
+
+  background-image: url("../assets/casually-dressed-man-at-the-beach.jpg");
+  background-position: center;
+  background-size: cover;
+  max-width: 100%;
+  height: 600px;
+}
+
+.logo-container {
+    max-width: 100%;
+}
+
+.logo {
+    width: 75%;
+    height: auto;
+}
+
+.header-content {
+    max-width: 1300px;
+}
+
+.nav-header {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-template-rows: 1fr;
+    align-items: center;
+}
+
+.nav-links {
+    text-align: right;
+}
+
+.collection-content {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.category-description {
+
+    padding-left: 25%;
+    padding-right: 25%;
+}
+
+.nav-container {
+    display: grid;
+    grid-template-columns: 325px auto;
+    grid-template-rows: 1fr;
+    align-content: end;
+}
+
+
+/*small devices portrait */
+@media only screen and (max-width: 768px) {
+    h1 {
+        font-size: 36px;
+    }
+    h3 {
+        font-size: 18px;
+    }
+    .nav-container {
+        display: none;
+    }
+    .header-template {
+        height: 350px;
+    }
+    .category-info {
+        margin-top: 15%;
+    }
+    .category-description {
+        padding-left: 0%;
+        padding-right: 0%;
+    }
+    .logo {
+        display: none;
+    }
+}
+
+
+/*For small devices in landscape mode*/
+@media only screen and (max-width: 900px) {
+    .logo-container {
+        max-width: 100%;
+    }
+    
+    .logo {
+        width: 55%;
+        height: auto;
+    }
+    .nav-header {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+}

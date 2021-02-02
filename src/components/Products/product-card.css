@@ -1,0 +1,36 @@
+p {
+    text-align: center;
+}
+
+.card-container {
+    width: 33%;
+    height: auto;
+}
+
+@media only screen and (max-width: 768px) {
+    .card-container {
+        width: 45%;
+    }
+}
+
+.product-description {
+    text-align: center;
+}
+
+@media (pointer: fine) {
+    .product-description {
+        visibility: hidden;
+    }
+    .carousel {
+        visibility: hidden;
+    }
+}
+
+.product-description:hover {
+    visibility: show;
+}
+
+.product-img {
+    width: 100%;
+    height: auto;
+}
