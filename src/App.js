@@ -1,4 +1,5 @@
 import './App.css';
+
 import { getStoreProducts } from './Storefront-API/fetch'
 import ProductCard from './components/Products/ProductCard'
 import ProductArea from './components/Products/ProductArea';
@@ -30,7 +31,10 @@ function App() {
           <Header/>
           <ProductArea merchandise={
             storeData.map((product) => {
-              return <ProductCard key={product.node.id} product={product.node} images={product.node.images} />
+              return <ProductCard 
+                key={product.node.id} 
+                product={product.node} 
+                images={product.node.images}/>
             })
 
           }

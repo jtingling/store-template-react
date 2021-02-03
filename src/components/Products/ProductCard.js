@@ -1,5 +1,4 @@
 import './product-card.css'
-
 import { useState, useRef } from 'react';
 
 
@@ -32,9 +31,17 @@ const ProductCard = (product) => {
         {
           product.images.edges.map((images, idx) => {
             if (idx === 0) {
-              return <img key={images.node.id} className='product-img' src={images.node.originalSrc} alt='more images' />
+              return <img
+                key={images.node.id}
+                className='product-img'
+                src={images.node.originalSrc}
+                alt='more images' />
             } else {
-              return <img key={images.node.id} className='product-img' src={images.node.originalSrc} alt='more images' hidden />
+              return <img 
+                key={images.node.id} 
+                className='product-img' 
+                src={images.node.originalSrc} 
+                alt='more images' hidden />
             }
           })
         }

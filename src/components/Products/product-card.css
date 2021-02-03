@@ -11,6 +11,9 @@ p {
     .card-container {
         width: 45%;
     }
+    .product-description {
+        font-size: small;
+    }
 }
 
 .product-description {
