@@ -15,10 +15,10 @@
     height: 100%;
     margin-left: 5%;
     margin-right: 5%;
+    margin: 0 auto;
 }
 
 .location {
     padding-top: 5%;
-    justify-self: left;
 }
 

@@ -2,19 +2,23 @@ footer {
     display: grid;
     grid-template-columns: 33% 33% 33%;
     grid-template-rows: 1fr;
-    max-width: 1300px;
     margin-left: 5%;
     margin-right: 5%;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 
 .footer-container {
     margin-top: 5%;
+    max-width: 100%;
+
 }
 
 .footer-about {
     display: flex;
     flex-wrap: nowrap;
     align-self: start;
+    margin-bottom: -5%;
 }
 
 .footer-text {
@@ -30,42 +34,46 @@ footer {
     font-size: x-small;
 }
 
-
 .link-table {
     display: flex;
     text-align: left;
     justify-content: center;
 }
 
+.social-media-container {
+    display: flex;
+    justify-content: center;
+}
+
 .social-media {
-    justify-self: center;
+    font-size: xx-large;
+    padding-left: 5px;
+    padding-right: 5px;
+
 }
 
 .logo-container {
-    margin-left: -10%;
+    margin-left: 10%;
 }
 
 .logo-footer {
+    margin-top: -20%;
     max-width: 100%;
     height: auto;
 }
 
 .inline-list {
     list-style-type: none;
-    text-align: center;
+    text-align: left;
 }
 
 @media only screen and (max-width: 768px) {
     .link-table {
-        margin-top: 5%;
-        font-size: small;
-    }
-    .social-media {
-        font-size: small;
+        margin-top: -5%;
+        font-size: medium;
     }
     footer {
         display: grid;
-        max-width: 1300px;
         grid-template-columns: 100%;
         grid-template-rows: 1fr;
         height: auto;
@@ -75,9 +83,13 @@ footer {
         width: 50%;
         height: auto;
     }
+    
     .footer-text-container {
-        margin-top: 5%;
+        margin-top: -5%;
         width: 50%;
+    }
+    .footer-text {
+        font-size: small;
     }
     .footer-about {
         flex-wrap: wrap;
@@ -93,5 +105,8 @@ footer {
     }
     .shop-table, .store-table {
         text-align: center;
+    }
+    .social-media-container {
+        margin-top: 3%;
     }
 }

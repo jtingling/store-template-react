@@ -1,5 +1,8 @@
 import './footer.css'
+import { useState, useRef, useEffect } from 'react';
 import logo from "../assets/logo_transparent.png"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFacebook, faTwitter, faInstagram, faShopify } from '@fortawesome/free-brands-svg-icons';
 
 const Footer = () => {
 
@@ -14,9 +17,7 @@ const Footer = () => {
                         <div className='footer-text-container'>
                             <p className='footer-text'>
                                 Bibisama is an Otaku clothing brand that blends the best of the culture and art style with unique
-                                clothing designs you won't find anywhere else.<br/><br/>
-                                <span id='email'>Contact Us: engo@bibisama.com</span><br/><br/>
-                                <span id='copyright'>© 2021 Bibisama Apparel Powered by Japanese Streetwear</span>
+                                clothing designs you won't find anywhere else.
                             </p>
                         </div>
                     </div>
@@ -68,12 +69,11 @@ const Footer = () => {
                         </table>
                     </div>
                 </div>
-                <div className='social-media'>
-                    <ul className='inline-list'>
-                        <li>Instagram</li>
-                        <li>Facebook</li>
-                        <li>Twitter</li>
-                    </ul>
+                <div className='social-media-container'>
+                    <div className='social-media'><FontAwesomeIcon icon={faInstagram} /></div>
+                    <div className='social-media'><FontAwesomeIcon icon={faFacebook} /></div>
+                    <div className='social-media'><FontAwesomeIcon icon={faTwitter} /></div>
+                    <div className='social-media'><FontAwesomeIcon icon={faShopify} /></div>
                 </div>
             </footer>
         </div>
