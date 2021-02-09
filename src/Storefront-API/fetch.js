@@ -1,17 +1,15 @@
-import  query  from './queries'
-
 let shopifyHeaders = new Headers(); 
 shopifyHeaders.append('X-Shopify-Storefront-Access-Token', '6cb0345be9a9d6bc63133406d1dadf51');
 shopifyHeaders.append('Content-Type', 'application/json');
 
-let myInit = {
-    method: 'POST',
-    headers: shopifyHeaders,
-    mode: 'cors',
-    body: query
-}
+const getStoreProducts = async (searchQuery) => {
+    let myInit = {
+        method: 'POST',
+        headers: shopifyHeaders,
+        mode: 'cors',
+        body: searchQuery
+    }
 
-const getStoreProducts = async () => {
     let products;
     try {
         const response = await fetch('https://xxteststore.myshopify.com/api/2021-01/graphql.json', myInit);

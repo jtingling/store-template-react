@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from 'react';
 import logo from "../assets/logo_transparent.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faShopify } from '@fortawesome/free-brands-svg-icons';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
 
@@ -32,13 +33,13 @@ const Footer = () => {
                                 <td>Landing</td>
                             </tr>
                             <tr>
-                                <td>Shirts</td>
+                                <Link to="/shirts"><td>Shirts</td></Link>
                             </tr>
                             <tr>
-                                <td>Jacket + Sweaters</td>
+                                <Link to="/jacket+sweaters"><td>Jacket + Sweaters</td></Link>
                             </tr>
                             <tr>
-                                <td>Accessories</td>
+                                <Link to="/accessories"><td>Accessories</td></Link>
                             </tr>
                             <tr>
                                 <td>Search</td>
@@ -52,10 +53,10 @@ const Footer = () => {
                                 <th>BIBISAMA</th>
                             </tr>
                             <tr>
-                                <td>Support</td>
+                                <Link to="support"><td>Support</td></Link>
                             </tr>
                             <tr>
-                                <td>About Us</td>
+                                <Link to="aboutus"><td>About Us</td></Link>
                             </tr>
                             <tr>
                                 <td>Store Policies</td>
