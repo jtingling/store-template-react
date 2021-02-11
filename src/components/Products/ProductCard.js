@@ -1,10 +1,13 @@
 import './product-card.css'
-import { useState, useRef } from 'react';
 
+import ProductDetailModal from './ProductDetailModal';
+import { Link } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
 
 const ProductCard = (product) => {
   const [visibility, setVisibility] = useState(false);
-  const imgRef = useRef(null);
+  const [show, setShow] = useState(false);
+  const cardRef = useRef(null);
 
   const showText = () => {
     setVisibility(true);
@@ -14,20 +17,16 @@ const ProductCard = (product) => {
     setVisibility(false)
   }
 
+  const showModal = () => {
+    setShow(!show);
+  }
+
   return (
-    <div
-      className='card-container'
-      onMouseOver={
-        () => {
-          showText();
-        }
-      }
-      onMouseOut={
-        () => {
-          hideText();
-        }
-      }>
-      <div ref={imgRef} id={product.product.id}>
+    <article className='card-container'
+      onMouseOver={() => { showText(); }}
+      onMouseOut={() => { hideText(); }}
+      onClick={e => { showModal(); }}>
+      <div id={product.product.id}>
         {
           product.images.edges.map((images, idx) => {
             if (idx === 0) {
@@ -37,10 +36,10 @@ const ProductCard = (product) => {
                 src={images.node.originalSrc}
                 alt='more images' />
             } else {
-              return <img 
-                key={images.node.id} 
-                className='product-img' 
-                src={images.node.originalSrc} 
+              return <img
+                key={images.node.id}
+                className='product-img'
+                src={images.node.originalSrc}
                 alt='more images' hidden />
             }
           })
@@ -52,7 +51,14 @@ const ProductCard = (product) => {
           {product.product.variants.edges[0].node.price}
         </p>
       </div>
-    </div>
+      {
+        <ProductDetailModal
+          onClose={showModal}
+          show={show}
+          handle={product.product.handle}
+          descriptionHtml={product.product.descriptionHtml} />
+      }
+    </article>
   )
 }
 

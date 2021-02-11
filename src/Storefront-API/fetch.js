@@ -12,10 +12,12 @@ const getStoreProducts = async (searchQuery) => {
 
     let products;
     try {
+        console.log("Accessing Shopify store...");
         const response = await fetch('https://xxteststore.myshopify.com/api/2021-01/graphql.json', myInit);
         if (!response.ok) {
             throw new Error('Response from server failed. ' + response.status);
         }
+        console.log("Success.")
         products = await response.json();
     } catch (error) {
         console.log(error);
@@ -23,4 +25,13 @@ const getStoreProducts = async (searchQuery) => {
     return products;
 }
 
-export {getStoreProducts};
+const fetchProducts = async (searchQuery) => {
+    try {
+      let result = await getStoreProducts(searchQuery);
+      return [result.data.products.edges];
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+export {getStoreProducts, fetchProducts};

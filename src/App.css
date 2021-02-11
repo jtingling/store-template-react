@@ -5,7 +5,7 @@ html, body {
   padding: 0px;
 }
 
-article {
+section {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
