@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react"
 
-import { fetchProducts } from '../../Storefront-API/fetch'
+import { getStoreData } from '../../Storefront-API/fetch'
 import { mapToProductCard } from '../../App';
 import { accessoryQuery } from '../../Storefront-API/queries'
 
 const Accessories = () => {
     const [accessoryData, setAccessoryData] = useState([]);
+
     useEffect(()=>{
         console.log("FETCH: requesting initial Accessory Data.")
-        fetchProducts(accessoryQuery).then((response) => setAccessoryData(response[0]));
+        getStoreData(accessoryQuery).then((response) => setAccessoryData(response.data.products));
     },[])
+
     return (
         <section>
             {
-                mapToProductCard(accessoryData)
+                mapToProductCard(accessoryData.edges)
             }
         </section>
     )

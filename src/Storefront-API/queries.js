@@ -51,11 +51,15 @@ export const shirtQuery = JSON.stringify({
     `
 })
 
-export const afterShirtQuery = (cursor) => {
+export const afterShirtQuery = (direction, position, cursor) => {
   return JSON.stringify({
     query: `
     {
-        products(first:${queryOptions.nProducts}, after:"${cursor}", query: "product_type:SHOES") {
+        products(${direction}:${queryOptions.nProducts}, ${position}:"${cursor}", query: "product_type:SHOES") {
+          pageInfo {
+            hasNextPage
+            hasPreviousPage
+          }
           edges {
             cursor
             node {
@@ -95,18 +99,6 @@ export const afterShirtQuery = (cursor) => {
   })
 }
 
-export const shirtQuery2 = JSON.stringify({
-  query: `
-  {
-    products(first:10) {
-      pageInfo {
-        hasNextPage
-        hasPreviousPage
-      }
-    }
-  }
-  `
-})
 
 
 export const accessoryQuery = JSON.stringify({
@@ -157,47 +149,47 @@ export const accessoryQuery = JSON.stringify({
 
 export const paintingQuery = JSON.stringify({
   query: `
-    {
-        products(first: ${queryOptions.nProducts}, query: "product_type:PAINTINGS") {
-          pageInfo {
-            hasNextPage
-            hasPreviousPage
-          }
-          edges {
-            cursor
-            node {
+  {
+      products(first: ${queryOptions.nProducts}, query: "product_type:PAINTING") {
+        pageInfo {
+          hasNextPage
+          hasPreviousPage
+        }
+        edges {
+          cursor
+          node {
+            id
+            handle
+            descriptionHtml
+            title
+            productType
+            options {
               id
-              handle
-              descriptionHtml
-              title
-              productType
-              options {
-                id
-                name
-                values
-              }
-              images(first: 5) {
-                edges {
-                  node {
-                    id
-                    originalSrc
-                    altText
-                    height
-                    width
-                  }
+              name
+              values
+            }
+            images(first: 1) {
+              edges {
+                node {
+                  id
+                  originalSrc
+                  altText
+                  height
+                  width
                 }
               }
-              variants(first: 5) {
-                edges {
-                  node {
-                    id
-                    price
-                  }
+            }
+            variants(first: 5) {
+              edges {
+                node {
+                  id
+                  price
                 }
               }
             }
           }
         }
       }
-    `
+    }
+  `
 })

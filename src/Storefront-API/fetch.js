@@ -9,7 +9,6 @@ const getStoreProducts = async (searchQuery) => {
         mode: 'cors',
         body: searchQuery
     }
-
     let products;
     try {
         console.log("Accessing Shopify store...");
@@ -17,7 +16,6 @@ const getStoreProducts = async (searchQuery) => {
         if (!response.ok) {
             throw new Error('Response from server failed. ' + response.status);
         }
-        console.log("Success.")
         products = await response.json();
     } catch (error) {
         console.log(error);
@@ -25,13 +23,13 @@ const getStoreProducts = async (searchQuery) => {
     return products;
 }
 
-const fetchProducts = async (searchQuery) => {
-    try {
-      let result = await getStoreProducts(searchQuery);
-      return [result.data.products.edges];
-    } catch (error) {
+const getStoreData = async (gqlQuery) => {
+  try {
+    let result = await getStoreProducts(gqlQuery);
+    return result;
+  } catch (error) {
       console.log(error);
-    }
-  }
+  } 
+}
 
-export {getStoreProducts, fetchProducts};
+export { getStoreData};

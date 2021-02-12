@@ -12,12 +12,21 @@ import JacketSweaters from './components/Products/JacketSweaters'
 import { Switch, Route } from 'react-router-dom';
 
 export const mapToProductCard = (data) => {
-  return data.map((product) => {
-    return <ProductCard
-      key={product.node.id}
-      product={product.node}
-      images={product.node.images} />
-  })
+  try {
+    if (data === undefined) {
+      throw "data undefined"
+    } else {
+      return data.map((product) => {
+        return <ProductCard
+          key={product.node.id}
+          product={product.node}
+          images={product.node.images} />
+      })
+    }
+
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 const App = () => {
