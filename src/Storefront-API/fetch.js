@@ -11,7 +11,7 @@ const getStoreProducts = async (searchQuery) => {
     }
     let products;
     try {
-        console.log("Accessing Shopify store...");
+        console.log("Accessing Shopify API...");
         const response = await fetch('https://xxteststore.myshopify.com/api/2021-01/graphql.json', myInit);
         if (!response.ok) {
             throw new Error('Response from server failed. ' + response.status);

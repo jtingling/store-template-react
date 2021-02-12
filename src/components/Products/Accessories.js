@@ -1,23 +1,53 @@
 import { useEffect, useState } from "react"
 
+import { setShopifyCursor } from '../Utilities/pagination'
+
 import { getStoreData } from '../../Storefront-API/fetch'
 import { mapToProductCard } from '../../App';
-import { accessoryQuery } from '../../Storefront-API/queries'
+import { query } from '../../Storefront-API/queries'
 
 const Accessories = () => {
     const [accessoryData, setAccessoryData] = useState([]);
+    const [cursor, setCursor] = useState({});
+
+    const setPage = (position) => {
+        setCursor(setShopifyCursor(position, accessoryData));
+    }
 
     useEffect(()=>{
-        console.log("FETCH: requesting initial Accessory Data.")
-        getStoreData(accessoryQuery).then((response) => setAccessoryData(response.data.products));
-    },[])
+        try{
+            console.log("FETCH: requesting initial Accessory Data.")
+            getStoreData(query(...["first", undefined, undefined, "ACCESSORIES"])).then((queryData) => { setAccessoryData(queryData.data.products)})
+        } catch (e) {
+            console.log(e)
+        }
+    }, [])
 
-    return (
-        <section>
-            {
-                mapToProductCard(accessoryData.edges)
+    useEffect(()=>{
+        try{
+            if (Object.keys(cursor)[0] === "before") {
+                getStoreData(query("last", "before", cursor["before"], "ACCESSORIES")).then((queryData)=>{ setAccessoryData(queryData.data.products)})
+            } else if (Object.keys(cursor)[0] === "after") {
+                getStoreData(query("first", "after", cursor["after"], "ACCESSORIES")).then((queryData)=>{ setAccessoryData(queryData.data.products)})
+            } else {
+                throw "Cursor unavailable.";
             }
-        </section>
+        } catch (e) {
+            console.log(e);
+        }
+    }, [cursor])
+    return (
+        <div>
+            <section>
+                { mapToProductCard(accessoryData.edges) }
+            </section>
+            <div>
+                {
+
+                }
+                <button type='button' onClick={()=>{setPage("before")}}>previous</button><button type='button' onClick={ () => {setPage("after")}}>next</button>
+            </div>
+        </div>
     )
 }
 

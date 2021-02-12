@@ -1,61 +1,34 @@
 import { useEffect, useState } from "react"
 
+import { setShopifyCursor } from '../Utilities/pagination'
+
 import { getStoreData } from '../../Storefront-API/fetch'
 import { mapToProductCard } from '../../App';
-import { shirtQuery, afterShirtQuery } from '../../Storefront-API/queries'
+import { query } from '../../Storefront-API/queries'
 
 const Shirts = () => {
     const [shirtData, setShirtData] = useState([]);
     const [cursor, setCursor] = useState({});
 
     const setPage = (position) => {
-        let cursor = {};
-        try{
-            if (shirtData.pageInfo.hasNextPage && shirtData.pageInfo.hasPreviousPage) {
-                if (position === "after") {
-                    cursor["after"] = shirtData.edges[shirtData.edges.length - 1].cursor;
-                } else if (position === "before") {
-                    cursor["before"] = shirtData.edges[0].cursor;
-                } else {
-                    throw "Pagination error setting next cursor.";
-                }
-            } else if (shirtData.pageInfo.hasNextPage) {
-                if (position === "after") {
-                    cursor["after"] = shirtData.edges[shirtData.edges.length - 1].cursor;
-                } else {
-                    throw "Pagination error setting next cursor.";
-                }
-            } else if (shirtData.pageInfo.hasPreviousPage) {
-                if (position === "before") {
-                    cursor["before"] = shirtData.edges[0].cursor;
-                } else {
-                    throw "Pagination error setting previous cursor.";
-                }
-            } else {
-                throw "PageInfo unavailable";
-            }
-            setCursor(cursor);
-        } catch (e) {
-            console.log(e);
-        }
+        setCursor(setShopifyCursor(position, shirtData));
     }
 
     useEffect(()=>{
         try{
             console.log("FETCH: requesting initial Shirt Data.")
-            getStoreData(shirtQuery).then((queryData) => { setShirtData(queryData.data.products)})
+            getStoreData(query(...["first", undefined, undefined, "SHOES"])).then((queryData) => { setShirtData(queryData.data.products)})
         } catch (e) {
             console.log(e)
         }
     }, [])
 
     useEffect(()=>{
-        console.log(cursor)
         try{
             if (Object.keys(cursor)[0] === "before") {
-                getStoreData(afterShirtQuery("last", "before", cursor["before"])).then((queryData)=>{ setShirtData(queryData.data.products)})
+                getStoreData(query("last", "before", cursor["before"], "SHOES")).then((queryData)=>{ setShirtData(queryData.data.products)})
             } else if (Object.keys(cursor)[0] === "after") {
-                getStoreData(afterShirtQuery("first", "after", cursor["after"])).then((queryData)=>{ setShirtData(queryData.data.products)})
+                getStoreData(query("first", "after", cursor["after"], "SHOES")).then((queryData)=>{ setShirtData(queryData.data.products)})
             } else {
                 throw "Cursor unavailable.";
             }
