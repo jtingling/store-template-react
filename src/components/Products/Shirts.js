@@ -1,17 +1,28 @@
 import { useEffect, useState } from "react"
-
+import PageNavigation from '../Utilities/PageNavigation'
 import { setShopifyCursor } from '../Utilities/pagination'
 
+import {queryOptions} from '../../Storefront-API/queries'
 import { getStoreData } from '../../Storefront-API/fetch'
 import { mapToProductCard } from '../../App';
 import { query } from '../../Storefront-API/queries'
 
 const Shirts = () => {
+    const NUM_SHIRTS = 23;
     const [shirtData, setShirtData] = useState([]);
     const [cursor, setCursor] = useState({});
 
     const setPage = (position) => {
         setCursor(setShopifyCursor(position, shirtData));
+    }
+
+    const getPageRange = (nProducts) => {
+        let numPages = Math.ceil(nProducts / queryOptions.nProducts);
+        let pageCount = [];
+        for (let n = numPages; n > 0; n--) {
+            pageCount.unshift(n)
+        }
+        return pageCount;
     }
 
     useEffect(()=>{
@@ -47,7 +58,7 @@ const Shirts = () => {
                 {
 
                 }
-                <button type='button' onClick={()=>{setPage("before")}}>previous</button><button type='button' onClick={ () => {setPage("after")}}>next</button>
+                <PageNavigation page={setPage} pageRange={getPageRange} numProducts={NUM_SHIRTS} />
             </div>
         </div>
     )

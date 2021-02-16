@@ -1,5 +1,5 @@
 
-const queryOptions = {
+export const queryOptions = {
   nProducts: 10,
   nVariants: 5,
   productCategories: ["SHOES", "ACCESSORIES", "PAINTING"]

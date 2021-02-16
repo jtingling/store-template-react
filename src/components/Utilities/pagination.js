@@ -30,3 +30,7 @@ export const setShopifyCursor = (position, productData) => {
         console.log(e);
     }
 }
+
+
+
+//TODO: Refactor

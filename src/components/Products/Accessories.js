@@ -1,17 +1,29 @@
 import { useEffect, useState } from "react"
 
-import { setShopifyCursor } from '../Utilities/pagination'
+import PageNavigation from '../Utilities/PageNavigation'
 
+import { setShopifyCursor } from '../Utilities/pagination'
+import {queryOptions} from '../../Storefront-API/queries'
 import { getStoreData } from '../../Storefront-API/fetch'
 import { mapToProductCard } from '../../App';
 import { query } from '../../Storefront-API/queries'
 
 const Accessories = () => {
+    const NUM_ACCESSORIES = 6;
     const [accessoryData, setAccessoryData] = useState([]);
     const [cursor, setCursor] = useState({});
 
     const setPage = (position) => {
         setCursor(setShopifyCursor(position, accessoryData));
+    }
+
+    const getPageRange = (nProducts) => {
+        let numPages = Math.ceil(nProducts / queryOptions.nProducts);
+        let pageCount = [];
+        for (let n = numPages; n > 0; n--) {
+            pageCount.unshift(n)
+        }
+        return pageCount;
     }
 
     useEffect(()=>{
@@ -45,7 +57,7 @@ const Accessories = () => {
                 {
 
                 }
-                <button type='button' onClick={()=>{setPage("before")}}>previous</button><button type='button' onClick={ () => {setPage("after")}}>next</button>
+                <PageNavigation page={setPage} pageRange={getPageRange} numProducts={NUM_ACCESSORIES} />
             </div>
         </div>
     )

@@ -1,0 +1,15 @@
+.left-chevron {
+    font-size: 48px;
+}
+
+.right-chevron {
+    font-size: 48px;
+}
+
+.highlight {
+    font-weight: bolder;
+}
+
+.no-highlight {
+    font-weight: normal;
+}

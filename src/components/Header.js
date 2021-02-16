@@ -26,5 +26,7 @@ const Header = (nav) => {
     )
 }
 
+//TODO: Put nav-header in own component
+
 
 export default Header;

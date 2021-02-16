@@ -32,4 +32,4 @@ const getStoreData = async (gqlQuery) => {
   } 
 }
 
-export { getStoreData};
+export { getStoreData };
