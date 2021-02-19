@@ -3,12 +3,12 @@ import { useEffect, useState } from "react"
 import PageNavigation from '../Utilities/PageNavigation'
 
 import { setShopifyCursor } from '../Utilities/pagination'
-import {queryOptions} from '../../Storefront-API/queries'
-import { getStoreData } from '../../Storefront-API/fetch'
-import { mapToProductCard } from '../../App';
-import { query } from '../../Storefront-API/queries'
+import {queryOptions} from '../../ShopifyAPI/queries'
+import { getStoreData } from '../../ShopifyAPI/storefront-api'
+import  MapToProductCard  from './MapToProductCard';
+import { query } from '../../ShopifyAPI/queries'
 
-const Accessories = () => {
+const Accessories = (props) => {
     const NUM_ACCESSORIES = 6;
     const [accessoryData, setAccessoryData] = useState([]);
     const [cursor, setCursor] = useState({});
@@ -28,7 +28,11 @@ const Accessories = () => {
 
     useEffect(()=>{
         try{
-            console.log("FETCH: requesting initial Accessory Data.")
+            props.client.product.fetchAll().then((products) => {
+                // Do something with the products
+                console.log(products);
+            })
+            console.log("Fetching product data...");
             getStoreData(query(...["first", undefined, undefined, "ACCESSORIES"])).then((queryData) => { setAccessoryData(queryData.data.products)})
         } catch (e) {
             console.log(e)
@@ -42,7 +46,7 @@ const Accessories = () => {
             } else if (Object.keys(cursor)[0] === "after") {
                 getStoreData(query("first", "after", cursor["after"], "ACCESSORIES")).then((queryData)=>{ setAccessoryData(queryData.data.products)})
             } else {
-                throw "Cursor unavailable.";
+                throw "Loading...";
             }
         } catch (e) {
             console.log(e);
@@ -51,7 +55,7 @@ const Accessories = () => {
     return (
         <div>
             <section>
-                { mapToProductCard(accessoryData.edges) }
+                <MapToProductCard type='accessories' data={accessoryData.edges}/>
             </section>
             <div>
                 {

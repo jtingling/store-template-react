@@ -2,9 +2,9 @@ import { useEffect, useState } from "react"
 
 import { setShopifyCursor } from '../Utilities/pagination'
 
-import { getStoreData } from '../../Storefront-API/fetch'
-import { mapToProductCard } from '../../App';
-import { query } from '../../Storefront-API/queries'
+import { getStoreData } from '../../ShopifyAPI/storefront-api'
+import { query } from '../../ShopifyAPI/queries'
+import MapToProductCard from "./MapToProductCard";
 
 const JacketSweaters = () => {
     const [jacketSweatersData, setjacketSweatersData] = useState([]);
@@ -16,7 +16,7 @@ const JacketSweaters = () => {
 
     useEffect(()=>{
         try{
-            console.log("FETCH: requesting initial Painting Data.")
+            console.log("Fetching product data...");
             getStoreData(query(...["first", undefined, undefined, "PAINTING"])).then((queryData) => { setjacketSweatersData(queryData.data.products)})
         } catch (e) {
             console.log(e)
@@ -39,7 +39,7 @@ const JacketSweaters = () => {
     return (
         <div>
             <section>
-                { mapToProductCard(jacketSweatersData.edges) }
+                <MapToProductCard data={jacketSweatersData.edges}/>
             </section>
             <div>
                 {

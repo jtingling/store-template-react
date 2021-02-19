@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react"
+import { useParams } from 'react-router-dom'
 import PageNavigation from '../Utilities/PageNavigation'
 import { setShopifyCursor } from '../Utilities/pagination'
 
-import {queryOptions} from '../../Storefront-API/queries'
-import { getStoreData } from '../../Storefront-API/fetch'
-import { mapToProductCard } from '../../App';
-import { query } from '../../Storefront-API/queries'
+import {queryOptions} from '../../ShopifyAPI/queries'
+import { getStoreData } from '../../ShopifyAPI/storefront-api'
+import  MapToProductCard  from './MapToProductCard';
+import { query } from '../../ShopifyAPI/queries'
 
-const Shirts = () => {
+const Shirts = (props) => {
     const NUM_SHIRTS = 23;
     const [shirtData, setShirtData] = useState([]);
     const [cursor, setCursor] = useState({});
-
     const setPage = (position) => {
         setCursor(setShopifyCursor(position, shirtData));
     }
@@ -27,7 +27,7 @@ const Shirts = () => {
 
     useEffect(()=>{
         try{
-            console.log("FETCH: requesting initial Shirt Data.")
+            console.log("Fetching product data...");
             getStoreData(query(...["first", undefined, undefined, "SHOES"])).then((queryData) => { setShirtData(queryData.data.products)})
         } catch (e) {
             console.log(e)
@@ -46,12 +46,13 @@ const Shirts = () => {
         } catch (e) {
             console.log(e);
         }
+
     }, [cursor])
     return (
         <div>
             <section>
                 {
-                        mapToProductCard(shirtData.edges)
+                        <MapToProductCard type="shirts" data={shirtData.edges}/>
                 }
             </section>
             <div>

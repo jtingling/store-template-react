@@ -1,8 +1,8 @@
 import './page-navigation.css'
-import { useEffect, useState, useRef } from 'react'
+import {  useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
-import { queryOptions } from '../../Storefront-API/queries';
+import { queryOptions } from '../../ShopifyAPI/queries';
 
 export const PageNavigation = (props) => {
     const [pageNumber, setPageNumber] = useState(1);

@@ -1,16 +1,19 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useHistory, useParams } from 'react-router-dom';
+import '../Products/product-detail-modal.css'
 
 const ProductDetailModal = (props) => {
-
     const onClose = () => {
         props.onClose();
     }
+
     if (!props.show) {
         return null;
     } else {
+
         return (
-            <article>
-                <button type='button' onClick={ () => {onClose()}}>close</button>
+            <article className='modal-window' onClick={onClose}>
+                <button type='button' onClick={onClose}>close</button>
                 <div className='product-images-container'>
 
                 </div>
@@ -27,8 +30,8 @@ const ProductDetailModal = (props) => {
                         </div>
                     </div>
                     <div className='product-button-container'>
-                        <button></button>
-                        <button></button>
+                        <button type='button'>Add to Cart</button>
+                        <button type='button'>Buy It Now</button>
                     </div>
                     <div className='description-container'>
                         <div className='description'>
