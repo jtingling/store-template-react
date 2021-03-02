@@ -1,11 +1,14 @@
 import './footer.css'
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useContext } from 'react';
 import logo from "../assets/logo_transparent.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faShopify } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
 
-const Footer = () => {
+import { CheckoutContext } from '../App'
+
+const Footer = (props) => {
+    const checkout = useContext(CheckoutContext);
 
     return (
         <div className='footer-container'>
@@ -62,7 +65,7 @@ const Footer = () => {
                                 <td>Store Policies</td>
                             </tr>
                             <tr>
-                                <td>Upcoming Events</td>
+                                {props.checkout.cart.lineItems.length !== 0 ? <td><Link to="/cart">Cart</Link></td> : <td>Empty Cart</td> }
                             </tr>
                             <tr>
                                 <td>SiteMap</td>

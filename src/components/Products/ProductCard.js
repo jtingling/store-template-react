@@ -1,8 +1,6 @@
 import './product-card.css'
-
 import ProductDetailModal from './ProductDetailModal';
 import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
 
 const ProductCard = (product) => {
   const [visibility, setVisibility] = useState(false);
@@ -18,13 +16,13 @@ const ProductCard = (product) => {
   }
 
   const showModal = () => {
-    console.log(show);
     setShow(!show);
+
   }
 
   return (
     <>
-      <article className='card-container'
+      <article className='card-container' 
         onMouseOver={() => { showText(); }}
         onMouseOut={() => { hideText(); }}
         onClick={e => { showModal(); }}>
@@ -56,10 +54,9 @@ const ProductCard = (product) => {
       </article>
       {
           <ProductDetailModal
+            data={product.product}
             onClose={showModal}
-            show={show}
-            handle={product.product.handle}
-            descriptionHtml={product.product.descriptionHtml} />
+            show={show} />
         }
     </>
   )

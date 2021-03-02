@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react"
 
 import PageNavigation from '../Utilities/PageNavigation'
-
+import { Link, useLocation } from 'react-router-dom';
 import { setShopifyCursor } from '../Utilities/pagination'
-import {queryOptions} from '../../ShopifyAPI/queries'
+import {queryOptions, query} from '../../ShopifyAPI/queries'
 import { getStoreData } from '../../ShopifyAPI/storefront-api'
-import  MapToProductCard  from './MapToProductCard';
-import { query } from '../../ShopifyAPI/queries'
+
+import ProductCard from './ProductCard';
 
 const Accessories = (props) => {
     const NUM_ACCESSORIES = 6;
-    const [accessoryData, setAccessoryData] = useState([]);
+    const [accessoryData, setAccessoryData] = useState(false);
     const [cursor, setCursor] = useState({});
+    let location = useLocation();
 
     const setPage = (position) => {
         setCursor(setShopifyCursor(position, accessoryData));
@@ -28,10 +29,6 @@ const Accessories = (props) => {
 
     useEffect(()=>{
         try{
-            props.client.product.fetchAll().then((products) => {
-                // Do something with the products
-                console.log(products);
-            })
             console.log("Fetching product data...");
             getStoreData(query(...["first", undefined, undefined, "ACCESSORIES"])).then((queryData) => { setAccessoryData(queryData.data.products)})
         } catch (e) {
@@ -52,19 +49,38 @@ const Accessories = (props) => {
             console.log(e);
         }
     }, [cursor])
-    return (
-        <div>
-            <section>
-                <MapToProductCard type='accessories' data={accessoryData.edges}/>
-            </section>
+    if (!accessoryData) {
+        return <h1>Data not ready yet.</h1>
+    } else {
+        return (
             <div>
-                {
-
-                }
-                <PageNavigation page={setPage} pageRange={getPageRange} numProducts={NUM_ACCESSORIES} />
+                <section>
+                        {
+                            accessoryData.edges.map((product) => {
+    
+                                return <Link
+                                    key={product.node.id}
+                                    to={{
+                                        pathname: `/${accessoryData.edges.type}/${product.node.handle}`,
+                                        state: { background: location }
+                                    }}>
+                                    <ProductCard
+                                        key={product.node.id}
+                                        product={product.node}
+                                        images={product.node.images} />
+                                </Link>
+                            })
+                        }
+                    </section>
+                <div>
+                    {
+    
+                    }
+                    <PageNavigation page={setPage} pageRange={getPageRange} numProducts={NUM_ACCESSORIES} />
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
 
 export default Accessories

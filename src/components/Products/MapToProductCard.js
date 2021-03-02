@@ -1,6 +1,5 @@
-import { useLocation, Link, useRouteMatch } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import ProductCard from './ProductCard';
-
 const MapToProductCard = (data) => {
     let location = useLocation();
 
@@ -16,6 +15,7 @@ const MapToProductCard = (data) => {
                         state: { background: location }
                     }}>
                     <ProductCard
+                        client={data.client}
                         key={product.node.id}
                         product={product.node}
                         images={product.node.images} />

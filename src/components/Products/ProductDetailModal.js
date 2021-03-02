@@ -1,25 +1,29 @@
-import { useEffect } from 'react';
-import { useHistory, useParams } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react';
+import { client } from '../../ShopifyAPI/client'
 import '../Products/product-detail-modal.css'
+import { CheckoutContext } from '../../App'
 
 const ProductDetailModal = (props) => {
-    const onClose = () => {
+    const checkout = useContext(CheckoutContext);
+    const onClose = () => { 
         props.onClose();
     }
 
     if (!props.show) {
         return null;
     } else {
-
         return (
-            <article className='modal-window' onClick={onClose}>
+            <article className='modal-window'>
                 <button type='button' onClick={onClose}>close</button>
                 <div className='product-images-container'>
 
                 </div>
                 <div className='product-description-container'>
                     <div className='product-title'>
-                        <h2>{props.handle}</h2>
+                        <h2>{props.data.handle}</h2>
+                        <div>
+                            <h5>{props.data.variants.edges[0].node.price}</h5>
+                        </div>
                     </div>
                     <div className='sizing-container'>
                         <div>
@@ -30,12 +34,12 @@ const ProductDetailModal = (props) => {
                         </div>
                     </div>
                     <div className='product-button-container'>
-                        <button type='button'>Add to Cart</button>
-                        <button type='button'>Buy It Now</button>
+                        <button type='button' onClick={()=> checkout.addItemToCart(1, props.data.variants.edges[0].node.id)}>Add to Cart</button>
+                        <button type='button' onClick={()=> checkout.buySingleItem(props.data.variants.edges[0].node.id)}>Buy It Now</button>
                     </div>
                     <div className='description-container'>
                         <div className='description'>
-                            <p>{props.descriptionHtml}</p>
+                            <p>{props.data.descriptionHtml}</p>
                             <div>
                                 <ul>
                                     <li>Artist: ...</li>
@@ -65,11 +69,10 @@ const ProductDetailModal = (props) => {
                             </ul>
                         </div>
                     </div>
-
                 </div>
+                <button type='button' onClick={()=> checkout.openCheckout()}>Checkout</button>
             </article>
         )
-
     }
 }
 
