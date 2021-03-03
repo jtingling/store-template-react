@@ -1,14 +1,11 @@
 import './footer.css'
-import { useState, useRef, useEffect, useContext } from 'react';
 import logo from "../assets/logo_transparent.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faShopify } from '@fortawesome/free-brands-svg-icons';
 import { Link } from 'react-router-dom';
 
-import { CheckoutContext } from '../App'
 
 const Footer = (props) => {
-    const checkout = useContext(CheckoutContext);
 
     return (
         <div className='footer-container'>
@@ -29,47 +26,54 @@ const Footer = (props) => {
                 <div className='link-table'>
                     <div className='shop-table'>
                         <table>
-                            <tr>
-                                <th>SHOP</th>
-                            </tr>
-                            <tr>
-                                <td>Landing</td>
-                            </tr>
-                            <tr>
-                                <Link to="/shirts"><td>Shirts</td></Link>
-                            </tr>
-                            <tr>
-                                <Link to="/jacket+sweaters"><td>Jacket + Sweaters</td></Link>
-                            </tr>
-                            <tr>
-                                <Link to="/accessories"><td>Accessories</td></Link>
-                            </tr>
-                            <tr>
-                                <td>Search</td>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th>SHOP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Landing</td>
+                                </tr>
+                                <tr>
+                                    <td><Link to="/shirts">Shirts</Link></td>
+                                </tr>
+                                <tr>
+                                    <td><Link to="/jacket+sweaters">Jacket + Sweaters</Link></td>
+                                </tr>
+                                <tr>
+                                    <td><Link to="/accessories">Accessories</Link></td>
+                                </tr>
+                                <tr>
+                                    <td>Search</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                     <div className='store-table'>
                         <table>
-                            <tr>
-
-                                <th>BIBISAMA</th>
-                            </tr>
-                            <tr>
-                                <Link to="support"><td>Support</td></Link>
-                            </tr>
-                            <tr>
-                                <Link to="aboutus"><td>About Us</td></Link>
-                            </tr>
-                            <tr>
-                                <td>Store Policies</td>
-                            </tr>
-                            <tr>
-                                {props.checkout.cart.lineItems.length !== 0 ? <td><Link to="/cart">Cart</Link></td> : <td>Empty Cart</td> }
-                            </tr>
-                            <tr>
-                                <td>SiteMap</td>
-                            </tr>
+                            <thead>
+                                <tr>
+                                    <th>BIBISAMA</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><Link to="support">Support</Link></td>
+                                </tr>
+                                <tr>
+                                    <td><Link to="aboutus">About Us</Link></td>
+                                </tr>
+                                <tr>
+                                    <td>Store Policies</td>
+                                </tr>
+                                <tr>
+                                    {props.checkout.cart.lineItems.length !== 0 ? <td><Link to="/cart">Cart</Link></td> : <td>Empty Cart</td>}
+                                </tr>
+                                <tr>
+                                    <td>SiteMap</td>
+                                </tr>
+                            </tbody>
                         </table>
                     </div>
                 </div>
