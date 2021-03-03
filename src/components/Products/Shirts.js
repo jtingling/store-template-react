@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react"
 import { Link, useLocation } from 'react-router-dom';
-
-import PageNavigation from '../Utilities/PageNavigation'
-import { setShopifyCursor } from '../Utilities/pagination'
-
 import { queryOptions } from '../../ShopifyAPI/queries'
 import { getStoreData } from '../../ShopifyAPI/storefront-api'
 import { query } from '../../ShopifyAPI/queries'
 
+import PageNavigation from '../Utilities/PageNavigation'
+import { setShopifyCursor } from '../Utilities/pagination'
 import ProductCard from './ProductCard';
+
+
+
 
 const Shirts = () => {
     const NUM_SHIRTS = 23;

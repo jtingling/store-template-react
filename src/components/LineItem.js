@@ -1,6 +1,5 @@
-import { useContext, useState, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import { CheckoutContext } from '../App'
-import { client } from '../ShopifyAPI/client';
 
 const LineItem = (props) => {
     let checkout = useContext(CheckoutContext);

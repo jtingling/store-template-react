@@ -8,7 +8,7 @@ import { getStoreData } from '../../ShopifyAPI/storefront-api'
 
 import ProductCard from './ProductCard';
 
-const Accessories = (props) => {
+const Accessories = () => {
     const NUM_ACCESSORIES = 6;
     const [accessoryData, setAccessoryData] = useState(false);
     const [cursor, setCursor] = useState({});

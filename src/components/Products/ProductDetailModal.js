@@ -1,5 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react';
-import { client } from '../../ShopifyAPI/client'
+import React, { useContext } from 'react';
 import '../Products/product-detail-modal.css'
 import { CheckoutContext } from '../../App'
 

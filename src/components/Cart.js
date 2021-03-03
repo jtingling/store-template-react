@@ -1,18 +1,10 @@
-import { useEffect, useState, useContext } from 'react'
+import { useContext } from 'react'
 import LineItem from './LineItem'
 import { Link } from 'react-router-dom';
 import { CheckoutContext } from '../App'
 
 const Cart = (props) => {
     let checkout = useContext(CheckoutContext);
-
-    const updateItem = () => {
-
-    }
-
-    useEffect(()=>{
-
-    })
 
     if (props.checkout === undefined) {
         return <h1>loading cart</h1>
