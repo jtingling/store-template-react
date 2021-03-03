@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 import AboutUs from './components/AboutUs';
 import Support from './components/Support';
 import Cart from './components/Cart';
-
+import Landing from './components/Landing';
 import Shirts from './components/Products/Shirts';
 import Accessories from './components/Products/Accessories';
 import JacketSweaters from './components/Products/JacketSweaters';
@@ -21,7 +21,7 @@ const App = () => {
   let location = useLocation();
   let background = location.state && location.state.background;
   const [checkout, setCheckout] = useState({
-    id: '', 
+    id: '',
     webUrl: '',
     cart: { lineItems: [] }
   });
@@ -32,61 +32,50 @@ const App = () => {
       quantity: quantity,
     }
     client.checkout.addLineItems(checkout.id, itemsToAdd)
-      .then(checkout => { setCheckout({
-        id: checkout.id, 
-        webUrl: checkout.webUrl,
-        cart: {
-          lineItems: checkout.lineItems,
-          subTotal: 0
-        }
-      }) 
-    })
-  }
-
-  const deleteItem = (lineItemId) => {
-    const checkoutId = checkout.id;
-    try {
-        client.checkout.removeLineItems(checkoutId, lineItemId).then( checkout => setCheckout({
-          id: checkout.id, 
+      .then(checkout => {
+        setCheckout({
+          id: checkout.id,
           webUrl: checkout.webUrl,
           cart: {
             lineItems: checkout.lineItems,
             subTotal: 0
           }
-        }))
-            .catch(e => console.log(e))
-    } catch(e) {
-        console.log(e);
+        })
+      })
+  }
+
+  const deleteItem = (lineItemId) => {
+    const checkoutId = checkout.id;
+    try {
+      client.checkout.removeLineItems(checkoutId, lineItemId).then(checkout => setCheckout({
+        id: checkout.id,
+        webUrl: checkout.webUrl,
+        cart: {
+          lineItems: checkout.lineItems,
+          subTotal: 0
+        }
+      }))
+        .catch(e => console.log(e))
+    } catch (e) {
+      console.log(e);
     }
   }
 
   const updateQuantity = (event, lineItem) => {
-    console.log(lineItem.id === checkout.cart.lineItems[0].id)
     const updateLineItem = [{
-        id: lineItem.id,
-        quantity: parseInt(event.target.value, 10)
+      id: lineItem.id,
+      quantity: parseInt(event.target.value, 10)
     }]
     client.checkout.updateLineItems(checkout.id, updateLineItem)
-        .then( res => setCheckout({
-          id: res.id, 
-          webUrl: res.webUrl,
-          cart: {
-            lineItems: res.lineItems,
-            subTotal: 0
-          }
-        }))
-        .catch(e => console.log(e))
-  }
-
-  const getCheckoutData = () => {
-    client.checkout.fetch(checkout.id).then(res => setCheckout({
-      id: res.id,
-      webUrl: res.webUrl,
-      cart: {
-        lineItems: res.lineItems,
-        subTotal: 0
-      }
-    }))
+      .then(res => setCheckout({
+        id: res.id,
+        webUrl: res.webUrl,
+        cart: {
+          lineItems: res.lineItems,
+          subTotal: 0
+        }
+      }))
+      .catch(e => console.log(e))
   }
 
   const buyNow = async (variantId) => {
@@ -106,23 +95,41 @@ const App = () => {
     window.location.replace(checkout.webUrl);
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(checkout)
   })
 
   useEffect(() => {
+    console.log("initCheckout>")
+    let persistCartId = window.localStorage;
+
     const initCheckout = async () => {
+      let cartId = persistCartId.getItem('cart');
       try {
-        await client.checkout.create().then((checkout) => {
-          setCheckout({
-            id: checkout.id, 
-            webUrl: checkout.webUrl,
-            cart: {
-              lineItems: checkout.lineItems,
-              subTotal: 0
-            }
+        if (cartId === null) {
+          await client.checkout.create().then((checkout) => {
+            persistCartId.setItem('cart', `${checkout.id}`);
+            setCheckout({
+              id: checkout.id,
+              webUrl: checkout.webUrl,
+              cart: {
+                lineItems: checkout.lineItems,
+                subTotal: 0
+              }
+            });
           })
-        })
+        } else {
+          await client.checkout.fetch(cartId).then((checkout)=>{
+            setCheckout({
+              id: persistCartId.getItem("cart"),
+              webUrl: checkout.webUrl,
+              cart: {
+                lineItems: checkout.lineItems,
+                subTotal: 0
+              }
+            })
+          })
+        }
       }
       catch (e) {
         console.log(e);
@@ -135,14 +142,18 @@ const App = () => {
     return <h1>Loading...</h1>
   } else {
     return (
-      <CheckoutContext.Provider value={{ 
-        addItemToCart: addToCart, 
-        buySingleItem: buyNow, 
+      <CheckoutContext.Provider value={{
+        addItemToCart: addToCart,
+        buySingleItem: buyNow,
         openCheckout: openCheckout,
         deleteItem: deleteItem,
-        updateQuantity: updateQuantity }}>
+        updateQuantity: updateQuantity
+      }}>
         <Header />
         <Switch location={background || location}>
+          <Route path='/' exact>
+            <Landing />
+          </Route>
           <Route path='/aboutus'>
             <AboutUs />
           </Route>
@@ -162,7 +173,7 @@ const App = () => {
             <Cart checkout={checkout} setCheckout={setCheckout} />
           </Route>
         </Switch>
-        <Footer checkout={checkout}/>
+        <Footer checkout={checkout} />
         {background && <Route path='/shirts/:product' children={<ProductDetailModal />} />}
       </CheckoutContext.Provider>
 
