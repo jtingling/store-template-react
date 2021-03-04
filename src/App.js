@@ -1,4 +1,4 @@
-import './App.css';
+import './css/App.css';
 import React, { useEffect, useState } from "react";
 import { Switch, Route, useLocation } from 'react-router-dom';
 
@@ -14,12 +14,12 @@ import Shirts from './components/Products/Shirts';
 import Accessories from './components/Products/Accessories';
 import JacketSweaters from './components/Products/JacketSweaters';
 import ProductDetailModal from './components/Products/ProductDetailModal';
+import CategoryHeader from './components/CategoryHeader'
 
 export const CheckoutContext = React.createContext();
 
 const App = () => {
   let location = useLocation();
-  let background = location.state && location.state.background;
   const [checkout, setCheckout] = useState({
     id: '',
     webUrl: '',
@@ -96,11 +96,10 @@ const App = () => {
   }
 
   useEffect(() => {
-    console.log(checkout)
+    console.log(location.state)
   })
 
   useEffect(() => {
-    console.log("initCheckout>")
     let persistCartId = window.localStorage;
 
     const initCheckout = async () => {
@@ -129,6 +128,7 @@ const App = () => {
               }
             })
           })
+          .catch(e => console.log(e))
         }
       }
       catch (e) {
@@ -147,34 +147,21 @@ const App = () => {
         buySingleItem: buyNow,
         openCheckout: openCheckout,
         deleteItem: deleteItem,
-        updateQuantity: updateQuantity
+        updateQuantity: updateQuantity,
+        categoryHeader: <CategoryHeader/>
       }}>
-        <Header />
-        <Switch location={background || location}>
-          <Route path='/' exact>
-            <Landing />
-          </Route>
-          <Route path='/aboutus'>
-            <AboutUs />
-          </Route>
-          <Route path='/support'>
-            <Support />
-          </Route>
-          <Route path='/jacket+sweaters'>
-            <JacketSweaters />
-          </Route>
-          <Route path='/accessories'>
-            <Accessories />
-          </Route>
-          <Route path='/shirts'>
-            <Shirts />
-          </Route>
-          <Route path='/cart'>
-            <Cart checkout={checkout} setCheckout={setCheckout} />
-          </Route>
+        <Header/>
+        <Switch location={location}>
+          <Route path='/' exact><Landing /></Route>
+          <Route path='/aboutus'><AboutUs /></Route>
+          <Route path='/support'><Support /></Route>
+          <Route path='/painting' location={location}><JacketSweaters /></Route>
+          <Route path='/accessories' location={location}><Accessories /></Route>
+          <Route path='/shoes' location={location}><Shirts /></Route>
+          <Route path='/cart'><Cart checkout={checkout} setCheckout={setCheckout} /></Route>
+          <Route path='/:product'><ProductDetailModal location={location}/></Route>
         </Switch>
         <Footer checkout={checkout} />
-        {background && <Route path='/shirts/:product' children={<ProductDetailModal />} />}
       </CheckoutContext.Provider>
 
     )

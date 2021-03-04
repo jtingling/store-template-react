@@ -1,9 +1,11 @@
-import './header.css';
+import '../css/header.css';
 import logo from "../assets/logo_transparent.png";
-import { Link } from 'react-router-dom';
+import { useContext } from 'react'
+import { CheckoutContext } from '../App'
+import { faRoad } from '@fortawesome/free-solid-svg-icons';
 
 const Header = (nav) => {
-
+    const checkoutContext = useContext(CheckoutContext);
     return (
         <header className="header-template">
             <div className='collection-content'>
@@ -12,13 +14,7 @@ const Header = (nav) => {
                         <div className='logo-container-header'>
                             <img src={logo} alt='logo' className='logo' />
                         </div>
-                        <nav className='nav-header'>              
-                                <Link to="/shirts"><h3 className='nav-links'>Shirts</h3></Link>
-                                <Link to="/jacket+sweaters"><h3 className='nav-links'>Jacket + Sweaters</h3></Link>
-                                <Link to="/accessories"><h3 className='nav-links'>Accessories</h3></Link>
-                                <Link to="/support"><h3 className='nav-links'>Support</h3></Link>
-                                <Link to="/aboutus"><h3 className='nav-links'>About Us</h3></Link>
-                        </nav>
+                        {checkoutContext.categoryHeader}
                     </div>
                 </div>
             </div>

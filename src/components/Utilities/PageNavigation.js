@@ -1,4 +1,4 @@
-import './page-navigation.css'
+import '../../css/page-navigation.css'
 import {  useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';

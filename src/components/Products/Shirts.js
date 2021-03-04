@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { queryOptions } from '../../ShopifyAPI/queries'
 import { getStoreData } from '../../ShopifyAPI/storefront-api'
 import { query } from '../../ShopifyAPI/queries'
@@ -8,15 +8,11 @@ import PageNavigation from '../Utilities/PageNavigation'
 import { setShopifyCursor } from '../Utilities/pagination'
 import ProductCard from './ProductCard';
 
-
-
-
 const Shirts = () => {
     const NUM_SHIRTS = 23;
 
     const [shirtData, setShirtData] = useState(false);
     const [cursor, setCursor] = useState({});
-    let location = useLocation();
 
     const setPage = (position) => {
         setCursor(setShopifyCursor(position, shirtData));
@@ -59,29 +55,23 @@ const Shirts = () => {
         return <h1>Data not ready yet.</h1>
     } else {
         return (
-            <div>
+            <>
                 <section>
                     {
                         shirtData.edges.map((product) => {
-
-                            return <Link
+                            return (
+                            <ProductCard
                                 key={product.node.id}
-                                to={{
-                                    pathname: `/${shirtData.edges.type}/${product.node.handle}`,
-                                    state: { background: location }
-                                }}>
-                                <ProductCard
-                                    key={product.node.id}
-                                    product={product.node}
-                                    images={product.node.images} />
-                            </Link>
+                                product={product.node}
+                                images={product.node.images} />
+                            )
                         })
                     }
                 </section>
                 <div>
                     <PageNavigation page={setPage} pageRange={getPageRange} numProducts={NUM_SHIRTS} />
                 </div>
-            </div>
+            </>
         )
     }
 }

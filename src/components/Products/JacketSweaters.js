@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 
 import PageNavigation from '../Utilities/PageNavigation'
-import { Link, useLocation } from 'react-router-dom';
 import { setShopifyCursor } from '../Utilities/pagination'
 import { queryOptions, query } from '../../ShopifyAPI/queries'
 import { getStoreData } from '../../ShopifyAPI/storefront-api'
@@ -12,7 +11,6 @@ const JacketSweaters = () => {
     const NUM_JacketSweaters = 10;
     const [jacketSweatersData, setjacketSweatersData] = useState(false);
     const [cursor, setCursor] = useState({});
-    let location = useLocation();
 
     const setPage = (position) => {
         setCursor(setShopifyCursor(position, jacketSweatersData));
@@ -54,31 +52,23 @@ const JacketSweaters = () => {
         return <h1>Data not ready yet.</h1>
     } else {
         return (
-            <div>
+            <>
                 <section>
                     {
                         jacketSweatersData.edges.map((product) => {
-                            return <Link
-                                key={product.node.id}
-                                to={{
-                                    pathname: `/${jacketSweatersData.edges.type}/${product.node.handle}`,
-                                    state: { background: location }
-                                }}>
+                            return (
                                 <ProductCard
                                     key={product.node.id}
                                     product={product.node}
                                     images={product.node.images} />
-                            </Link>
+                            )
                         })
                     }
                 </section>
                 <div>
-                    {
-    
-                    }
                     <PageNavigation page={setPage} pageRange={getPageRange} numProducts={NUM_JacketSweaters} />
                 </div>
-            </div>
+            </>
         )
     }
 }

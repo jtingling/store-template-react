@@ -1,4 +1,4 @@
-import './footer.css'
+import '../css/footer.css'
 import logo from "../assets/logo_transparent.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faShopify } from '@fortawesome/free-brands-svg-icons';
@@ -36,10 +36,10 @@ const Footer = (props) => {
                                     <td>Landing</td>
                                 </tr>
                                 <tr>
-                                    <td><Link to="/shirts">Shirts</Link></td>
+                                    <td><Link to="/shoes">Shirts</Link></td>
                                 </tr>
                                 <tr>
-                                    <td><Link to="/jacket+sweaters">Jacket + Sweaters</Link></td>
+                                    <td><Link to="/painting">Jacket + Sweaters</Link></td>
                                 </tr>
                                 <tr>
                                     <td><Link to="/accessories">Accessories</Link></td>

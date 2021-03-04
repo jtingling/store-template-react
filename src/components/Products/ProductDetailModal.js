@@ -1,27 +1,31 @@
 import React, { useContext } from 'react';
-import '../Products/product-detail-modal.css'
+import '../../css/product-detail-modal.css'
+import { Link } from 'react-router-dom';
 import { CheckoutContext } from '../../App'
 
 const ProductDetailModal = (props) => {
     const checkout = useContext(CheckoutContext);
-    const onClose = () => { 
-        props.onClose();
-    }
+    const { productData } = props.location.state;
 
-    if (!props.show) {
-        return null;
+    console.log(productData);
+
+    if (productData === undefined) {
+        return <h1>Loading Data...</h1>
     } else {
         return (
             <article className='modal-window'>
-                <button type='button' onClick={onClose}>close</button>
+                <Link to={{
+                    pathname: `/${productData.productType.toLowerCase()}`
+                    }}>
+                    <button type='button'>Back to {`${productData.productType.toLowerCase()}`}</button>
+                </Link>
                 <div className='product-images-container'>
-
                 </div>
                 <div className='product-description-container'>
                     <div className='product-title'>
-                        <h2>{props.data.handle}</h2>
+                        <h2>{productData.handle}</h2>
                         <div>
-                            <h5>{props.data.variants.edges[0].node.price}</h5>
+                            <h5>{productData.variants.edges[0].node.price}</h5>
                         </div>
                     </div>
                     <div className='sizing-container'>
@@ -33,12 +37,12 @@ const ProductDetailModal = (props) => {
                         </div>
                     </div>
                     <div className='product-button-container'>
-                        <button type='button' onClick={()=> checkout.addItemToCart(1, props.data.variants.edges[0].node.id)}>Add to Cart</button>
-                        <button type='button' onClick={()=> checkout.buySingleItem(props.data.variants.edges[0].node.id)}>Buy It Now</button>
+                        <button type='button' onClick={() => checkout.addItemToCart(1, productData.variants.edges[0].node.id)}>Add to Cart</button>
+                        <button type='button' onClick={() => checkout.buySingleItem(productData.variants.edges[0].node.id)}>Buy It Now</button>
                     </div>
                     <div className='description-container'>
                         <div className='description'>
-                            <p>{props.data.descriptionHtml}</p>
+                            <p>{productData.descriptionHtml}</p>
                             <div>
                                 <ul>
                                     <li>Artist: ...</li>
@@ -69,7 +73,7 @@ const ProductDetailModal = (props) => {
                         </div>
                     </div>
                 </div>
-                <button type='button' onClick={()=> checkout.openCheckout()}>Checkout</button>
+                <button type='button' onClick={() => checkout.openCheckout()}>Checkout</button>
             </article>
         )
     }
