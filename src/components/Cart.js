@@ -25,7 +25,7 @@ const Cart = (props) => {
                     <div className='subTotal'>
                         <div>
                             <h4>SUBTOTAL</h4>
-                            <h4>$333</h4>
+                            <h4>{props.checkout.cart.subTotal}</h4>
                             <p>Shipping, taxes, and discount codes calculated at checkout.</p>
                         </div>
                         <button type='button' onClick={() => checkout.openCheckout()}>Check Out</button>

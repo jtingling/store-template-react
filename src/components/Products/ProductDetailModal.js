@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import '../../css/product-detail-modal.css'
 import { Link } from 'react-router-dom';
 import { CheckoutContext } from '../../App'
 

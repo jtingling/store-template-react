@@ -1,4 +1,4 @@
-import './css/App.css';
+
 import React, { useEffect, useState } from "react";
 import { Switch, Route, useLocation } from 'react-router-dom';
 
@@ -15,6 +15,7 @@ import Accessories from './components/Products/Accessories';
 import JacketSweaters from './components/Products/JacketSweaters';
 import ProductDetailModal from './components/Products/ProductDetailModal';
 import CategoryHeader from './components/CategoryHeader'
+import Menu from './components/Menu';
 
 export const CheckoutContext = React.createContext();
 
@@ -23,22 +24,27 @@ const App = () => {
   const [checkout, setCheckout] = useState({
     id: '',
     webUrl: '',
-    cart: { lineItems: [] }
+    cart: {
+      lineItems: [],
+      subTotal: 0,
+      quantity: 0
+    }
   });
 
   const addToCart = (quantity, variantId) => {
     const itemsToAdd = {
       variantId: variantId,
-      quantity: quantity,
+      quantity: quantity
     }
-    client.checkout.addLineItems(checkout.id, itemsToAdd)
-      .then(checkout => {
+
+    client.checkout.addLineItems(checkout.id, itemsToAdd).then(res => {
         setCheckout({
-          id: checkout.id,
-          webUrl: checkout.webUrl,
+          id: res.id,
+          webUrl: res.webUrl,
           cart: {
-            lineItems: checkout.lineItems,
-            subTotal: 0
+            lineItems: res.lineItems,
+            subTotal: res.lineItemsSubtotalPrice.amount,
+            quantity: getCartQuantity()
           }
         })
       })
@@ -47,12 +53,13 @@ const App = () => {
   const deleteItem = (lineItemId) => {
     const checkoutId = checkout.id;
     try {
-      client.checkout.removeLineItems(checkoutId, lineItemId).then(checkout => setCheckout({
-        id: checkout.id,
-        webUrl: checkout.webUrl,
+      client.checkout.removeLineItems(checkoutId, lineItemId).then(res => setCheckout({
+        id: res.id,
+        webUrl: res.webUrl,
         cart: {
-          lineItems: checkout.lineItems,
-          subTotal: 0
+          lineItems: res.lineItems,
+          subTotal: res.lineItemsSubtotalPrice.amount,
+          quantity: getCartQuantity()
         }
       }))
         .catch(e => console.log(e))
@@ -61,18 +68,18 @@ const App = () => {
     }
   }
 
-  const updateQuantity = (event, lineItem) => {
+  const updateQuantity = async (event, lineItem) => {
     const updateLineItem = [{
       id: lineItem.id,
       quantity: parseInt(event.target.value, 10)
     }]
-    client.checkout.updateLineItems(checkout.id, updateLineItem)
-      .then(res => setCheckout({
+    await client.checkout.updateLineItems(checkout.id, updateLineItem).then(res => setCheckout({
         id: res.id,
         webUrl: res.webUrl,
         cart: {
           lineItems: res.lineItems,
-          subTotal: 0
+          subTotal: res.lineItemsSubtotalPrice.amount,
+          quantity: getCartQuantity()
         }
       }))
       .catch(e => console.log(e))
@@ -95,36 +102,54 @@ const App = () => {
     window.location.replace(checkout.webUrl);
   }
 
+  const getCartQuantity =  async () => {
+    let cartId = window.localStorage.getItem('cart');
+    let quantity= 0;
+    await client.checkout.fetch(cartId).then(res => {
+      res.lineItems.map((item) => {
+        return quantity += item.quantity;
+      })
+    });
+    return quantity;
+  }
+
   useEffect(() => {
-    console.log(location.state)
+    let cart = window.localStorage;
+    client.checkout.fetch(cart.getItem('cart')).then(res => console.log(res))
+    console.log(checkout)
   })
 
   useEffect(() => {
     let persistCartId = window.localStorage;
-
     const initCheckout = async () => {
       let cartId = persistCartId.getItem('cart');
       try {
         if (cartId === null) {
-          await client.checkout.create().then((checkout) => {
+          client.checkout.create().then((checkout) => {
             persistCartId.setItem('cart', `${checkout.id}`);
             setCheckout({
               id: checkout.id,
               webUrl: checkout.webUrl,
               cart: {
                 lineItems: checkout.lineItems,
-                subTotal: 0
+                subTotal: checkout.lineItemsSubtotalPrice.amount,
+                quantity: 0
               }
             });
           })
         } else {
-          await client.checkout.fetch(cartId).then((checkout)=>{
+          let totalQuantity = 0;
+          client.checkout.fetch(cartId).then((checkout)=>{
+            checkout.lineItems.map((item)=> {
+              return totalQuantity += item.quantity
+            })
             setCheckout({
               id: persistCartId.getItem("cart"),
               webUrl: checkout.webUrl,
               cart: {
                 lineItems: checkout.lineItems,
-                subTotal: 0
+                subTotal: checkout.lineItemsSubtotalPrice.amount,
+                quantity: totalQuantity
               }
             })
           })
@@ -148,7 +173,8 @@ const App = () => {
         openCheckout: openCheckout,
         deleteItem: deleteItem,
         updateQuantity: updateQuantity,
-        categoryHeader: <CategoryHeader/>
+        categoryHeader: <CategoryHeader/>,
+        quantity: getCartQuantity()
       }}>
         <Header/>
         <Switch location={location}>
@@ -158,10 +184,11 @@ const App = () => {
           <Route path='/painting' location={location}><JacketSweaters /></Route>
           <Route path='/accessories' location={location}><Accessories /></Route>
           <Route path='/shoes' location={location}><Shirts /></Route>
-          <Route path='/cart'><Cart checkout={checkout} setCheckout={setCheckout} /></Route>
+          <Route path='/cart'><Cart checkout={checkout}/></Route>
           <Route path='/:product'><ProductDetailModal location={location}/></Route>
         </Switch>
         <Footer checkout={checkout} />
+        <Menu checkout={checkout}/>
       </CheckoutContext.Provider>
 
     )

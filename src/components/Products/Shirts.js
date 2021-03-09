@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import { useLocation } from 'react-router-dom';
 import { queryOptions } from '../../ShopifyAPI/queries'
 import { getStoreData } from '../../ShopifyAPI/storefront-api'
 import { query } from '../../ShopifyAPI/queries'
