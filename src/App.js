@@ -1,4 +1,4 @@
-
+import './css/app.css'
 import React, { useEffect, useState } from "react";
 import { Switch, Route, useLocation } from 'react-router-dom';
 
@@ -36,7 +36,6 @@ const App = () => {
       variantId: variantId,
       quantity: quantity
     }
-
     client.checkout.addLineItems(checkout.id, itemsToAdd).then(res => {
         setCheckout({
           id: res.id,
@@ -114,12 +113,6 @@ const App = () => {
   }
 
   useEffect(() => {
-    let cart = window.localStorage;
-    client.checkout.fetch(cart.getItem('cart')).then(res => console.log(res))
-    console.log(checkout)
-  })
-
-  useEffect(() => {
     let persistCartId = window.localStorage;
     const initCheckout = async () => {
       let cartId = persistCartId.getItem('cart');
@@ -173,10 +166,9 @@ const App = () => {
         openCheckout: openCheckout,
         deleteItem: deleteItem,
         updateQuantity: updateQuantity,
-        categoryHeader: <CategoryHeader/>,
         quantity: getCartQuantity()
       }}>
-        <Header/>
+        <Header checkout={checkout}/>
         <Switch location={location}>
           <Route path='/' exact><Landing /></Route>
           <Route path='/aboutus'><AboutUs /></Route>

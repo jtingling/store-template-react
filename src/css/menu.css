@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+.menu-container {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 125px;
+  bottom: 0px;
+}
+
+.empty-menu {
+  display: none;
+}
+
+.menu {
+  display: flex;
+  font-size: xx-large;
+  background-color: black;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  height: 125px;
+  flex-wrap: wrap;
+  bottom: 0px;
+}
+
+.touch-menu {
+  background-color: black;
+  overflow-y: hidden;
+  max-width: 100%;
+  width: 25%;
+  position: relative;
+  bottom: 185px;
+  border-radius: 60px 60px 0px 0px;
+}
+
+.touch-menu a h5 {
+  margin: 5px;
+  text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+  .empty-menu {
+    display: flex;
+    font-size: xx-large;
+    background-color: black;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    height: 125px;
+    flex-wrap: wrap;
+    border-radius: 100px;
+    margin-left: 2%;
+    margin-right: 2%;
+  }
+
+  .touch-menu {
+    background-color: black;
+    overflow-y: hidden;
+    max-width: 100%;
+    width: 100%;
+    position: relative;
+    bottom: 185px;
+    border-radius: 60px 60px 0px 0px;
+  }
+
+  .open {
+    border-radius: 0 0 60px 60px;
+  }
+
+  .closed {
+    max-height: 0px;
+  }
+}
+
+/*# sourceMappingURL=menu.css.map */

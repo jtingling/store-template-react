@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+$raleway-swap: 'Raleway', sans-serif;
+$buttonColours: (
+    "black": black,
+    "white": rgba(255,255,255),
+);
+
+$menu: map-get($buttonColours, "black");
+$addToCart: map-get($buttonColours, "white");
+
+$widthRanges: (
+    "mobile": 768px,
+    "tablet": 900px,
+    "pc": 1024px
+);

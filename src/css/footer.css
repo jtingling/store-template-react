@@ -10,6 +10,7 @@ footer {
 
 .footer-container {
     margin-top: 5%;
+    margin-bottom: 5%;
     max-width: 100%;
 
 }
@@ -71,6 +72,9 @@ footer {
     .link-table {
         margin-top: -5%;
         font-size: medium;
+    }
+    .footer-container{
+        margin-bottom: 35%;
     }
     footer {
         display: grid;

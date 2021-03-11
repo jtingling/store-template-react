@@ -1,20 +1,4 @@
-p {
-    text-align: center;
-}
 
-.card-container {
-    width: 33%;
-    height: auto;
-}
-
-@media only screen and (max-width: 768px) {
-    .card-container {
-        width: 45%;
-    }
-    .product-description {
-        font-size: small;
-    }
-}
 
 .product-description {
     text-align: center;
@@ -33,7 +17,3 @@ p {
     visibility: show;
 }
 
-.product-img {
-    width: 100%;
-    height: auto;
-}

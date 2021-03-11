@@ -1,4 +1,6 @@
-/* No CSS */
-/*# sourceMappingURL=app.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+:root {
+  font-family: "Raleway", sans-serif;
+}
 
 /*# sourceMappingURL=app.css.map */

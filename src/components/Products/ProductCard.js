@@ -44,12 +44,6 @@ const ProductCard = (product) => {
                       className='product-img'
                       src={images.node.originalSrc}
                       alt='more images' />
-                  } else {
-                    return <img
-                      key={images.node.id}
-                      className='product-img'
-                      src={images.node.originalSrc}
-                      alt='more images' hidden />
                   }
                 })
               }

@@ -33,7 +33,7 @@ const Footer = (props) => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>Landing</td>
+                                    <td><Link to="/">Landing</Link></td>
                                 </tr>
                                 <tr>
                                     <td><Link to="/shoes">Shirts</Link></td>

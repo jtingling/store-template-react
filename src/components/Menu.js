@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import '../css/menu.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import CategoryHeader from './CategoryHeader';
 
 const Menu = (props) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -11,39 +12,47 @@ const Menu = (props) => {
     const context = useContext(CheckoutContext);
     const toggleMenu = () => {
         isOpen ? setIsOpen(false) : setIsOpen(true);
+
     }
 
     const menuWithCart = () => {
         if (quantity > 0) {
             if (isOpen) {
                 return (
-                    <>
-                        {context.categoryHeader}
-                        <FontAwesomeIcon icon={faTimes} />{quantity}{quantity === 1 ? <h5><Link to='/cart'>Item</Link></h5> : <h5><Link to='/cart'>Items</Link></h5>} <h5>{props.checkout.cart.subTotal}</h5>
-                        <button type='button' onClick={() => context.openCheckout()}>Checkout</button>
-                    </>
+                    <div className='menu'>
+                        <CategoryHeader className={"touch-menu"} />
+                        <div>
+                            <span><FontAwesomeIcon icon={faTimes} /></span>{quantity}{quantity === 1 ? <span><Link to='/cart'>Item</Link></span> : <span><Link to='/cart'>Items</Link></span>} <span>{props.checkout.cart.subTotal}</span>
+                            <button type='button' onClick={() => context.openCheckout()}>Checkout</button>
+                        </div>
+                    </div>
                 )
             } else {
                 return (
-                    <>
-                        <FontAwesomeIcon icon={faBars} />{quantity}{quantity === 1 ? <h5><Link to='/cart'>Item</Link></h5> : <h5><Link to='/cart'>Items</Link></h5>} <h5>{props.checkout.cart.subTotal}</h5>
+                    <div className='menu'>
+                        <span><FontAwesomeIcon icon={faBars} /></span>{quantity}{quantity === 1 ? <span><Link to='/cart'>Item</Link></span> : <span><Link to='/cart'>Items</Link></span>} <span>{props.checkout.cart.subTotal}</span>
                         <button type='button' onClick={() => context.openCheckout()}>Checkout</button>
-                    </>
+                    </div>
                 )
             }
         } else {
             if (isOpen) {
                 return (
-                    <>{context.categoryHeader}<FontAwesomeIcon icon={faTimes} /></>
+                    <>
+                        <div className='empty-menu open'>
+                            <CategoryHeader className={"touch-menu"} />
+                            <div><FontAwesomeIcon icon={faTimes} /></div>
+                        </div>
+                        
+                    </>
                 )
             } else {
                 return (
-                    <><FontAwesomeIcon icon={faBars} /><h2>Menu</h2></>
+                    <div className='empty-menu'><FontAwesomeIcon icon={faBars} /><span>Menu</span></div>
                 )
             }
         }
     }
-
 
     useEffect(() => {
         context.quantity.then(quantity => setQuantity(quantity))
@@ -52,8 +61,7 @@ const Menu = (props) => {
     return (
         <>
             {
-                <div onClick={() => toggleMenu()} className='menu'>
-                    {console.log(quantity)}
+                <div onClick={() => toggleMenu()} className='menu-container'>
                     {
                         menuWithCart()
                     }
