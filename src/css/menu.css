@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
 .menu-container {
   position: fixed;
-  background-color: black;
   left: 0;
   right: 0;
   bottom: 0;
@@ -45,6 +44,29 @@
   .cart-menu button {
     padding: 24px 32px;
     font-size: 16px;
+  }
+
+  .pill-menu {
+    position: fixed;
+    background-color: black;
+    border-radius: 100px;
+    color: white;
+    max-width: 500px;
+    left: 0;
+    right: 0;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    text-align: center;
+    margin: 0 auto;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .pill-menu {
+    display: none;
+  }
+
+  .menu-container {
+    background-color: black;
   }
 }
 @media only screen and (max-width: 425px) {

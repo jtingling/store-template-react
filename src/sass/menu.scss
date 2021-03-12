@@ -3,24 +3,20 @@
 @function getWidth($deviceType) {
     @return map-get($widthRanges, $deviceType);
 }
-
 .menu-container {
     position: fixed;
-    background-color: black;
     left: 0;
     right: 0;
     bottom: 0;
     width: 100%;
     height:100px;
 }
-
 .cart-menu {
-    max-width: 500px;
+    max-width: 500px;;
     height: auto;
     margin: auto;
     @include menuBar;
     justify-content: space-evenly;
-
     button {
         background-color: white;
         padding: 26px 26px;
@@ -35,11 +31,9 @@
      color: white;  
     }
 }
-
 #faBars {
     font-size: xx-large
 }
-
 @media only screen and (max-width: getWidth("mobile")) {
     .cart-menu {
         font-size: 24px;
@@ -48,8 +42,30 @@
             font-size: 16px;
         }
     }
+    .pill-menu {
+        position: fixed;
+        background-color: black;
+        border-radius: 100px;
+        color: white;
+        max-width: 500px;
+        left: 0;
+        right: 0;
+        padding-top: 24px;
+        padding-bottom: 24px;
+        text-align: center;
+        margin: 0 auto;
+    }
+    
 }
-
+@media only screen and (min-width: getWidth(("mobile"))) {
+    .pill-menu {
+        display: none;
+    }
+    .menu-container{
+        background-color: black;
+    }
+    
+}
 @media only screen and (max-width: getWidth("smallMobile")) {
     .cart-menu {
         font-size: 24px;
@@ -61,4 +77,5 @@
     .menu-items {
         text-align: center;
     }
+    
 }

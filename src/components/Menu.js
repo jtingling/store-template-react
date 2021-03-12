@@ -1,10 +1,7 @@
 import { useState, useContext, useEffect } from 'react'
 import { CheckoutContext } from '../App'
-import { Link } from 'react-router-dom';
 import '../css/menu.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
-import CategoryHeader from './CategoryHeader';
+import CartItems from './Utilities/CartItems'
 
 const Menu = (props) => {
     const [quantity, setQuantity] = useState(0);
@@ -21,18 +18,7 @@ const Menu = (props) => {
 
     return (
         <div className="menu-container">
-            
-            <div className='cart-menu'>
-            
-                <span onClick={()=> props.toggleMenu()}><FontAwesomeIcon icon={faBars} id='faBars' /></span>
-                {
-                    quantity === 1 ? <span className="menu-items"><Link to='/cart'>{quantity} Item</Link></span> :
-                        <span className="menu-items"><Link to='/cart'>{quantity} Items</Link></span>
-                }
-                <span>${props.checkout.cart.subTotal}</span>
-                <button type='button' onClick={() => context.openCheckout()}>C H E C K O U T</button>
-            </div>
-
+            <CartItems quantity={quantity} checkout={props.checkout}/>
         </div>
 
     )

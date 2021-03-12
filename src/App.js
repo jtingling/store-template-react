@@ -172,7 +172,8 @@ const App = () => {
         openCheckout: openCheckout,
         deleteItem: deleteItem,
         updateQuantity: updateQuantity,
-        quantity: getCartQuantity()
+        quantity: getCartQuantity(),
+        toggleMenu: toggleMenu
       }}>
         <Header checkout={checkout}/>
         <Switch location={location}>
@@ -186,11 +187,10 @@ const App = () => {
           <Route path='/:product'><ProductDetailModal location={location}/></Route>
         </Switch>
         <Footer checkout={checkout} />
-        {          console.log(isOpen)}
         {
           isOpen ? <CategoryHeader className={"nav-list"}/> : <></>
         }
-        <Menu toggleMenu={toggleMenu} checkout={checkout}/>
+        <Menu  checkout={checkout}/>
       </CheckoutContext.Provider>
 
     )
