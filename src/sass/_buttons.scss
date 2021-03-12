@@ -5,8 +5,7 @@
     font-size: xx-large;
     background-color: $menu;
     color: map-get($buttonColours, "white");
-    justify-content: center;
     align-items: center;
-    height: 125px;
-    flex-wrap: wrap;
+    height: 100px;
+    flex-wrap: nowrap;
 };

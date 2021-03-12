@@ -1,6 +1,58 @@
 @import "./variables";
 
+@function getWidth($deviceType) {
+    @return map-get($widthRanges, $deviceType);
+}
 :root {
     font-family: $raleway-swap;
 }
 
+section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1300px;
+    margin: 0 auto;
+
+}
+
+.card-container {
+    max-width: 33%;
+    max-height: auto;
+}
+
+.product-img {
+    max-width: 100%;
+    height: auto;
+}
+
+.nav-list {
+    position: fixed;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+    max-width: 500px;
+    width: auto; 
+    margin: 0 auto;
+    background-color: black;
+    border-radius: 60px 60px 0 0;
+    a:link, a:visited {
+        text-decoration: underline;     
+        color: white;  
+        text-align: center;
+        padding: 0;
+        margin: 0;
+       }
+    a h5 {
+        font-size: 24px;
+        margin: 0;
+        padding: 8px 16px;
+    }
+}
+
+@media only screen and (max-width: getWidth("mobile")) {
+    .card-container {
+        max-width: 50%;
+        height: auto;
+    }
+}

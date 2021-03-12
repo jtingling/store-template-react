@@ -10,7 +10,9 @@ $menu: map-get($buttonColours, "black");
 $addToCart: map-get($buttonColours, "white");
 
 $widthRanges: (
+    "smallMobile": 425px,
     "mobile": 768px,
     "tablet": 900px,
-    "pc": 1024px
+    "laptop": 1024px,
+    "wideScreen": 1920px
 );

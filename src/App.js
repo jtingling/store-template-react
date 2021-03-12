@@ -20,7 +20,7 @@ import Menu from './components/Menu';
 export const CheckoutContext = React.createContext();
 
 const App = () => {
-  let location = useLocation();
+  const [isOpen, setIsOpen] = useState(null);
   const [checkout, setCheckout] = useState({
     id: '',
     webUrl: '',
@@ -30,6 +30,12 @@ const App = () => {
       quantity: 0
     }
   });
+  let location = useLocation();
+
+  const toggleMenu = () => {
+    isOpen ? setIsOpen(false) : setIsOpen(true);
+
+}
 
   const addToCart = (quantity, variantId) => {
     const itemsToAdd = {
@@ -180,7 +186,11 @@ const App = () => {
           <Route path='/:product'><ProductDetailModal location={location}/></Route>
         </Switch>
         <Footer checkout={checkout} />
-        <Menu checkout={checkout}/>
+        {          console.log(isOpen)}
+        {
+          isOpen ? <CategoryHeader className={"nav-list"}/> : <></>
+        }
+        <Menu toggleMenu={toggleMenu} checkout={checkout}/>
       </CheckoutContext.Provider>
 
     )

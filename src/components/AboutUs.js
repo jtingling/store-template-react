@@ -2,7 +2,7 @@
 const AboutUs = () => {
 
     return (
-        <article>
+        <section>
             <h1>About Us</h1>
             <div>
                 <h3>Our Philosophy</h3>
@@ -89,7 +89,7 @@ const AboutUs = () => {
                     </ol>
                 </div>
             </div>
-        </article>
+        </section>
     )
 }
 
