@@ -20,7 +20,7 @@ import Menu from './components/Menu';
 export const CheckoutContext = React.createContext();
 
 const App = () => {
-  const [isOpen, setIsOpen] = useState(null);
+  const [isOpen, setIsOpen] = useState(false);
   const [checkout, setCheckout] = useState({
     id: '',
     webUrl: '',
@@ -159,7 +159,7 @@ const App = () => {
         console.log(e);
       }
     }
-    initCheckout();
+    initCheckout(); 
   }, [])
 
   if (checkout === undefined) {
@@ -173,7 +173,8 @@ const App = () => {
         deleteItem: deleteItem,
         updateQuantity: updateQuantity,
         quantity: getCartQuantity(),
-        toggleMenu: toggleMenu
+        toggleMenu: toggleMenu,
+        isOpen: isOpen
       }}>
         <Header checkout={checkout}/>
         <Switch location={location}>
@@ -188,7 +189,7 @@ const App = () => {
         </Switch>
         <Footer checkout={checkout} />
         {
-          isOpen ? <CategoryHeader className={"nav-list"}/> : <></>
+          isOpen ? <CategoryHeader isOpen={isOpen} className={"nav-list"}/> : <></>
         }
         <Menu  checkout={checkout}/>
       </CheckoutContext.Provider>

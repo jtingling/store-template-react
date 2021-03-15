@@ -30,7 +30,7 @@ section {
   width: auto;
   margin: 0 auto;
   background-color: black;
-  border-radius: 60px 60px 0 0;
+  border-radius: 50px 50px 0 0;
 }
 .nav-list a:link, .nav-list a:visited {
   text-decoration: underline;

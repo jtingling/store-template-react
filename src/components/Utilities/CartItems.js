@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { CheckoutContext } from '../../App'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -12,27 +12,27 @@ const CartItems = (props) => {
             {
                 props.quantity === 0 ?
                     <div
-                        className='pill-menu'
+                        className={context.isOpen ? 'pill-menu-open' : 'pill-menu-closed'}
                         onClick={() => context.toggleMenu()}>
-                        <div>
-                            <FontAwesomeIcon icon={faBars} id='faBars' />
-                            <span>M E N U</span>
+                        <div id='menu'>
+                            {context.isOpen ? <span><FontAwesomeIcon icon={faTimes} id='faTimes' /></span> :
+                                <div>
+                                    <span><FontAwesomeIcon icon={faBars} id='faBars' /></span>
+                                    <span id='menu-text'>M E N U</span>
+                                </div>
+                            }
                         </div>
                     </div> :
                     <div className='cart-menu'>
-                        <span
-                            className="menu-items"
-                            onClick={() => context.toggleMenu()}>
-                            <FontAwesomeIcon icon={faBars} id='faBars' />
+                        <div className="menu-items">
+                            <FontAwesomeIcon onClick={() => context.toggleMenu()} icon={context.isOpen ? faTimes : faBars} id='faBars' />
                             <Link to='/cart'>{props.quantity} Items</Link>
                             <span>${props.checkout.cart.subTotal}</span>
-                            <button type='button' onClick={() => context.openCheckout()}>C H E C K O U T
-                            </button>
-                        </span>
+                            <button type='button' onClick={() => context.openCheckout()}>C H E C K O U T</button>
+                        </div>
                     </div>
             }
         </>
-
     )
 }
 

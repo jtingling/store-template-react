@@ -9,7 +9,7 @@
 }
 
 .cart-menu {
-  max-width: 500px;
+  max-width: 100%;
   height: auto;
   margin: auto;
   display: flex;
@@ -19,15 +19,24 @@
   align-items: center;
   height: 100px;
   flex-wrap: nowrap;
+  font-size: 24px;
   justify-content: space-evenly;
 }
 .cart-menu button {
   background-color: white;
-  padding: 26px 26px;
+  padding: 20px 15px;
   font-size: 15px;
   border-radius: 100px;
 }
 
+.menu-items {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  max-width: 100%;
+  width: 450px;
+}
 .menu-items a:link, .menu-items a:visited {
   text-decoration: underline;
   color: white;
@@ -37,16 +46,22 @@
   font-size: xx-large;
 }
 
-@media only screen and (max-width: 768px) {
-  .cart-menu {
-    font-size: 24px;
-  }
-  .cart-menu button {
-    padding: 24px 32px;
-    font-size: 16px;
-  }
+#faTimes {
+  font-size: xx-large;
+}
 
-  .pill-menu {
+#menu {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+#menu #menu-text {
+  margin-left: 20px;
+}
+
+@media only screen and (max-width: 768px) {
+  .pill-menu-closed {
     position: fixed;
     background-color: black;
     border-radius: 100px;
@@ -54,32 +69,37 @@
     max-width: 500px;
     left: 0;
     right: 0;
-    padding-top: 24px;
-    padding-bottom: 24px;
+    padding: 24px 0 24px 0;
     text-align: center;
-    margin: 0 auto;
+    margin: auto;
+  }
+
+  .pill-menu-open {
+    position: fixed;
+    background-color: black;
+    border-radius: 0 0 50px 50px;
+    color: white;
+    max-width: 500px;
+    left: 0;
+    right: 0;
+    padding: 24px 0 24px 0;
+    text-align: center;
+    margin: auto;
   }
 }
 @media only screen and (min-width: 768px) {
-  .pill-menu {
+  .pill-menu-open, .pill-menu-closed {
     display: none;
-  }
-
-  .menu-container {
-    background-color: black;
   }
 }
 @media only screen and (max-width: 425px) {
-  .cart-menu {
-    font-size: 24px;
-  }
-  .cart-menu button {
-    padding: 24px 24px;
-    font-size: 16px;
-  }
-
   .menu-items {
     text-align: center;
+  }
+
+  .pill-menu {
+    margin-left: 10px;
+    margin-right: 10px;
   }
 }
 

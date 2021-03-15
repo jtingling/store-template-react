@@ -7,11 +7,6 @@ const Menu = (props) => {
     const [quantity, setQuantity] = useState(0);
     const context = useContext(CheckoutContext);
 
-
-    const hasQuantity = () => {
-        return quantity > 0 ? true : false;
-    }
-
     useEffect(() => {
         context.quantity.then(quantity => setQuantity(quantity))
     }, [props.checkout.cart.quantity])
