@@ -1,10 +1,24 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckoutContext } from '../../App'
+
+import ImageGallary from 'react-image-gallery';
+import '../../css/productDetail.css'
 
 const ProductDetailModal = (props) => {
     const checkout = useContext(CheckoutContext);
     const { productData } = props.location.state;
+
+    const getImages = () => {
+        let images = [];
+        if (productData) {
+            productData.images.edges.map((productImage)=>{
+                images.push({ original: productImage.node.originalSrc })
+            })
+        }
+        return images;
+    }
+
 
     console.log(productData);
 
@@ -13,26 +27,29 @@ const ProductDetailModal = (props) => {
     } else {
         return (
             <article className='modal-window'>
-                <Link to={{
-                    pathname: `/${productData.productType.toLowerCase()}`
-                    }}>
-                    <button type='button'>Back to {`${productData.productType.toLowerCase()}`}</button>
-                </Link>
                 <div className='product-images-container'>
+                    <ImageGallary 
+                        items={getImages()}
+                        showNav={false}
+                        showBullets={true}
+                        showThumbnails={false}
+                        showFullscreenButton={false}
+                        useBrowserFullscreen={false}
+                        autoPlay={true} 
+                        showPlayButton={false}/>
                 </div>
                 <div className='product-description-container'>
                     <div className='product-title'>
-                        <h2>{productData.handle}</h2>
+                        <h1>{productData.handle}</h1>
                         <div>
-                            <h5>{productData.variants.edges[0].node.price}</h5>
+                            <h2>${productData.variants.edges[0].node.price}</h2>
+                            <p><Link to='/support'>Shipping</Link> calculated at checkout</p>
                         </div>
                     </div>
                     <div className='sizing-container'>
-                        <div>
-
-                        </div>
-                        <div>
-
+                        <h3 className='sizing-title'>Size</h3>
+                        <div className='sizing-options'>
+                            <div></div>
                         </div>
                     </div>
                     <div className='product-button-container'>

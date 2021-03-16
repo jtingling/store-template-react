@@ -51,6 +51,7 @@ const Shirts = () => {
     }, [cursor])
 
     if (!shirtData) {
+        {console.log(shirtData)}
         return <h1>Data not ready yet.</h1>
     } else {
         return (

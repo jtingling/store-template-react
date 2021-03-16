@@ -191,7 +191,7 @@ const App = () => {
         {
           isOpen ? <CategoryHeader isOpen={isOpen} className={"nav-list"}/> : <></>
         }
-        <Menu  checkout={checkout}/>
+        <Menu checkout={checkout}/>
       </CheckoutContext.Provider>
 
     )

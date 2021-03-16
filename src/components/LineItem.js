@@ -4,9 +4,6 @@ import { CheckoutContext } from '../App'
 const LineItem = (props) => {
     let checkout = useContext(CheckoutContext);
 
-    useEffect(()=>{
-        console.log(props.lineItem);
-    })
     return (
         <>
             <div className='cart-item'>

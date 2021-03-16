@@ -1,7 +1,7 @@
 
 export const queryOptions = {
   nProducts: 10,
-  nVariants: 5,
+  nVariants: 12,
   productCategories: ["SHOES", "ACCESSORIES", "PAINTING"]
 }
 
@@ -49,6 +49,7 @@ export const query = (direction, position = '', cursor = '', productType) => {
                 variants(first: 12) {
                   edges {
                     node {
+                      availableForSale
                       id
                       title
                       price
@@ -59,10 +60,6 @@ export const query = (direction, position = '', cursor = '', productType) => {
                   }
                 }
               }
-            }
-            pageInfo {
-              hasNextPage
-              hasPreviousPage
             }
           }
         }
