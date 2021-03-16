@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckoutContext } from '../../App'
 
@@ -7,19 +7,29 @@ import '../../css/productDetail.css'
 
 const ProductDetailModal = (props) => {
     const checkout = useContext(CheckoutContext);
+    const [variantId, setVariantId] = useState(0);
     const { productData } = props.location.state;
 
     const getImages = () => {
         let images = [];
         if (productData) {
-            productData.images.edges.map((productImage)=>{
+            productData.images.edges.forEach((productImage)=>{
                 images.push({ original: productImage.node.originalSrc })
             })
         }
         return images;
     }
-
-
+    const variantSelection = (variantIndex) => {
+        if (productData) {
+            if(productData.variants.edges[variantIndex].node.availableForSale) {
+                setVariantId(productData.variants.edges[variantIndex].node.id);
+            } else {
+                return null
+            }
+        } else {
+            throw new Error("no product");
+        }
+    }
     console.log(productData);
 
     if (productData === undefined) {
@@ -49,12 +59,17 @@ const ProductDetailModal = (props) => {
                     <div className='sizing-container'>
                         <h3 className='sizing-title'>Size</h3>
                         <div className='sizing-options'>
+                            {
+                                productData.options[0].values.map((size, idx)=>{
+                                    return <button type='button' onClick={()=> variantSelection(idx)}>{size}</button>
+                                })
+                            }
                             <div></div>
                         </div>
                     </div>
                     <div className='product-button-container'>
-                        <button type='button' onClick={() => checkout.addItemToCart(1, productData.variants.edges[0].node.id)}>Add to Cart</button>
-                        <button type='button' onClick={() => checkout.buySingleItem(productData.variants.edges[0].node.id)}>Buy It Now</button>
+                        <button type='button' onClick={() => checkout.addItemToCart(1, variantId)}>Add to Cart</button>
+                        <button type='button' onClick={() => checkout.buySingleItem(variantId)}>Buy It Now</button>
                     </div>
                     <div className='description-container'>
                         <div className='description'>
