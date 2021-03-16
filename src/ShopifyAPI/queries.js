@@ -30,7 +30,12 @@ export const query = (direction, position = '', cursor = '', productType) => {
                 descriptionHtml
                 title
                 productType
-                images(first: 1) {
+                options {
+                  id
+                  name
+                  values
+                }
+                images(first: 5) {
                   edges {
                     node {
                       id
@@ -41,11 +46,15 @@ export const query = (direction, position = '', cursor = '', productType) => {
                     }
                   }
                 }
-                variants(first: 5) {
+                variants(first: 12) {
                   edges {
                     node {
                       id
+                      title
                       price
+                      image {
+                        id
+                      }
                     }
                   }
                 }
