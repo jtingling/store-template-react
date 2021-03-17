@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
 .image-gallery-icon {
   color: #fff;
   transition: all 0.2s ease-out;
@@ -403,6 +404,28 @@
 .img-main {
   max-width: 100%;
   height: auto;
+}
+
+.dropdown {
+  display: flex;
+  width: 100%;
+  text-align: left;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
+}
+.dropdown svg {
+  font-size: xx-large;
+  transition: all 0.1s ease-in;
+}
+
+@media only screen and (min-width: 768px) {
+  .modal-window {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    column-gap: 10px;
+  }
 }
 
 /*# sourceMappingURL=productDetail.css.map */

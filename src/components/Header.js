@@ -13,7 +13,7 @@ const Header = (nav) => {
                     <div className='nav-container'>
                         <div className='logo-container-header'>
                         </div>
-                        <CategoryHeader className={"nav-header"}/>
+                        <CategoryHeader className={"nav-header"} />
                     </div>
                 </div>
             </div>

@@ -174,8 +174,8 @@ const App = () => {
         updateQuantity: updateQuantity,
         quantity: getCartQuantity(),
         toggleMenu: toggleMenu,
-        isOpen: isOpen
-      }}>
+        isOpen: isOpen,
+        setIsOpen: setIsOpen}}>
         <Header checkout={checkout}/>
         <Switch location={location}>
           <Route path='/' exact><Landing /></Route>
@@ -189,7 +189,7 @@ const App = () => {
         </Switch>
         <Footer checkout={checkout} />
         {
-          isOpen ? <CategoryHeader isOpen={isOpen} className={"nav-list"}/> : <></>
+          isOpen ? <CategoryHeader isOpen={isOpen}  className={"nav-list"}/> : <></>
         }
         <Menu checkout={checkout}/>
       </CheckoutContext.Provider>

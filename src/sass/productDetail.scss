@@ -1,4 +1,9 @@
 @import "../../node_modules/react-image-gallery/styles/scss/image-gallery.scss";
+@import "./buttons";
+
+@function getWidth($deviceType) {
+    @return map-get($widthRanges, $deviceType);
+}
 
 .image-gallery-bullets .image-gallery-bullet.active {
     background: black;
@@ -24,4 +29,29 @@
 .img-main {
     max-width: 100%;
     height: auto;
+}
+.dropdown-container {
+
+}
+
+.dropdown {
+    display: flex;
+    width: 100%;
+    text-align: left;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    svg {
+        font-size: xx-large;
+        transition: all 0.1s ease-in;
+    }
+}
+
+@media only screen and (min-width: getWidth("mobile")) {
+    .modal-window {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        column-gap: 10px;
+    }
 }

@@ -1,0 +1,10 @@
+@import "./buttons";
+@function getWidth($deviceType) {
+    @return map-get($widthRanges, $deviceType);
+}
+
+@media only screen and (min-width: getWidth("mobile")) {
+    #nav-header{
+        display: none;
+    }
+}

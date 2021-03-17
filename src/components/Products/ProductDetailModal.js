@@ -1,19 +1,21 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckoutContext } from '../../App'
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faAngleUp, faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import ImageGallary from 'react-image-gallery';
 import '../../css/productDetail.css'
 
 const ProductDetailModal = (props) => {
     const checkout = useContext(CheckoutContext);
     const [variantId, setVariantId] = useState(0);
+    const [isHidden, setHidden] = useState([]);
     const { productData } = props.location.state;
 
     const getImages = () => {
         let images = [];
         if (productData) {
-            productData.images.edges.forEach((productImage)=>{
+            productData.images.edges.forEach((productImage) => {
                 images.push({ original: productImage.node.originalSrc })
             })
         }
@@ -21,7 +23,7 @@ const ProductDetailModal = (props) => {
     }
     const variantSelection = (variantIndex) => {
         if (productData) {
-            if(productData.variants.edges[variantIndex].node.availableForSale) {
+            if (productData.variants.edges[variantIndex].node.availableForSale) {
                 setVariantId(productData.variants.edges[variantIndex].node.id);
             } else {
                 return null
@@ -30,23 +32,24 @@ const ProductDetailModal = (props) => {
             throw new Error("no product");
         }
     }
-    console.log(productData);
-
+    useEffect(()=> {
+        setHidden([true, true, true, true])
+    },[])
     if (productData === undefined) {
         return <h1>Loading Data...</h1>
     } else {
         return (
             <article className='modal-window'>
                 <div className='product-images-container'>
-                    <ImageGallary 
+                    <ImageGallary
                         items={getImages()}
                         showNav={false}
                         showBullets={true}
                         showThumbnails={false}
                         showFullscreenButton={false}
                         useBrowserFullscreen={false}
-                        autoPlay={true} 
-                        showPlayButton={false}/>
+                        autoPlay={true}
+                        showPlayButton={false} />
                 </div>
                 <div className='product-description-container'>
                     <div className='product-title'>
@@ -60,8 +63,8 @@ const ProductDetailModal = (props) => {
                         <h3 className='sizing-title'>Size</h3>
                         <div className='sizing-options'>
                             {
-                                productData.options[0].values.map((size, idx)=>{
-                                    return <button type='button' onClick={()=> variantSelection(idx)}>{size}</button>
+                                productData.options[0].values.map((size, idx) => {
+                                    return <button type='button' onClick={() => variantSelection(idx)}>{size}</button>
                                 })
                             }
                             <div></div>
@@ -71,40 +74,77 @@ const ProductDetailModal = (props) => {
                         <button type='button' onClick={() => checkout.addItemToCart(1, variantId)}>Add to Cart</button>
                         <button type='button' onClick={() => checkout.buySingleItem(variantId)}>Buy It Now</button>
                     </div>
-                    <div className='description-container'>
-                        <div className='description'>
-                            <p>{productData.descriptionHtml}</p>
-                            <div>
-                                <ul>
-                                    <li>Artist: ...</li>
-                                    <li>Model: ...</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div className='sizing-chart'>
-                            <img />
-                        </div>
-                        <div className='care-instructions'>
-                            <ul>
-                                <li>All of our shirts come preshrunk</li>
-                                <li>Machine washable</li>
-                                <li>Cold wash only</li>
-                                <li>Tumble dry on low heat</li>
-                                <li>Do not bleach</li>
-                            </ul>
-                        </div>
-                        <div className='clothing-info'>
-                            <ul>
-                                <li>T-shirts and clothing are made in-house</li>
-                                <li>95% cotton, 5% spandex</li>
-                                <li>Designed in-house</li>
-                                <li>Produced in-house</li>
-                                <li>No outsourcing</li>
-                            </ul>
-                        </div>
+                    <div className='dropdown-container'>
+                        <button type='button' className='dropdown' onClick={() => setHidden([!isHidden[0], isHidden[1], isHidden[2], isHidden[3]])}>
+                            Description
+                            <span ><FontAwesomeIcon icon={isHidden[0] ? faAngleDown : faAngleUp} /></span>
+                        </button>
+                        {
+                            isHidden[0] ? <div id='description' hidden><p >{productData.descriptionHtml}</p></div> :
+                                <div id='description' ><p >{productData.descriptionHtml}</p></div>
+                        }
+
+                        <button type='button' className='dropdown' onClick={() => setHidden([isHidden[0], !isHidden[1], isHidden[2], isHidden[3]])}>
+                            Sizing Chart
+                            <span><FontAwesomeIcon icon={isHidden[1] ? faAngleDown : faAngleUp} /></span>
+                        </button>
+                        {
+                            isHidden[1] ? <code hidden>Sizing chart image goes here</code> : <code>Sizing chart image goes here</code>
+                        }
+                        <button type='button' className='dropdown' onClick={() => setHidden([isHidden[0], isHidden[1], !isHidden[2], isHidden[3]])}>
+                            Care Instructions
+                            <span><FontAwesomeIcon icon={isHidden[2] ? faAngleDown : faAngleUp} /></span>
+                        </button>
+                        {
+                            isHidden[2] ? 
+                                        <div hidden>
+                                            <ul>
+                                                <li>All of our shirts come preshrunk</li>
+                                                <li>Machine washable</li>
+                                                <li>Cold wash only</li>
+                                                <li>Tumble dry on low heat</li>
+                                                <li>Do not bleach</li>
+                                            </ul>
+                                        </div> 
+                                    :
+                                        <div>
+                                            <ul>
+                                                <li>All of our shirts come preshrunk</li>
+                                                <li>Machine washable</li>
+                                                <li>Cold wash only</li>
+                                                <li>Tumble dry on low heat</li>
+                                                <li>Do not bleach</li>
+                                            </ul>
+                                        </div>
+                        }
+                        <button type='button' className='dropdown' onClick={() => setHidden([isHidden[0], isHidden[1], isHidden[2], !isHidden[3]])}>
+                            How This Was Made
+                            <span><FontAwesomeIcon icon={isHidden[3] ? faAngleDown : faAngleUp} /></span>
+                        </button>
+                        {
+                            isHidden[3] ? 
+                                        <div hidden>
+                                            <ul>
+                                                <li>T-shirts and clothing are made in-house</li>
+                                                <li>95% cotton, 5% spandex</li>
+                                                <li>Designed in-house</li>
+                                                <li>Produced in-house</li>
+                                                <li>No outsourcing</li>
+                                            </ul>
+                                        </div>
+                                    :
+                                        <div>
+                                            <ul>
+                                                <li>T-shirts and clothing are made in-house</li>
+                                                <li>95% cotton, 5% spandex</li>
+                                                <li>Designed in-house</li>
+                                                <li>Produced in-house</li>
+                                                <li>No outsourcing</li>
+                                            </ul>
+                                        </div>
+                        }
                     </div>
                 </div>
-                <button type='button' onClick={() => checkout.openCheckout()}>Checkout</button>
             </article>
         )
     }
