@@ -380,8 +380,16 @@
   }
 }
 
+button {
+  text-decoration: none;
+}
+
 .image-gallery-bullets .image-gallery-bullet.active {
   background: black;
+}
+
+.product-description-container {
+  padding: 0 3%;
 }
 
 .modal-window {
@@ -398,7 +406,8 @@
 }
 
 .product-title {
-  text-align: center;
+  text-align: left;
+  padding-top: 60px;
 }
 
 .img-main {
@@ -406,17 +415,75 @@
   height: auto;
 }
 
+.sizing-options {
+  padding: 2% 2%;
+  text-align: center;
+}
+
+.size-buttons {
+  background-color: transparent;
+  cursor: pointer;
+  text-align: center;
+  border-radius: 30px;
+  border-color: black;
+  border-style: none;
+  font-size: 16px;
+  padding: 10px 15px;
+  margin: 0 20px;
+}
+.size-buttons:focus {
+  border-style: solid;
+  outline: 0;
+}
+
+.product-button-container {
+  margin-bottom: 4%;
+}
+
+.product-addToCart {
+  cursor: pointer;
+  font-size: 18px;
+  background-color: white;
+  color: black;
+  border-radius: 50px;
+  margin-top: 1%;
+  padding: 3% 2%;
+  width: 100%;
+}
+
+.product-buyNow {
+  width: 100%;
+  cursor: pointer;
+  font-size: 18px;
+  background-color: black;
+  color: white;
+  border-radius: 50px;
+  margin-top: 1%;
+  padding: 3% 2%;
+}
+
 .dropdown {
   display: flex;
+  cursor: pointer;
+  border-top: none;
+  border-bottom: black solid;
+  border-left: none;
+  border-right: none;
+  border-width: 2px;
+  outline: 0;
   width: 100%;
   text-align: left;
   align-items: center;
   justify-content: space-between;
   padding: 20px 0;
+  background-color: transparent;
 }
 .dropdown svg {
   font-size: xx-large;
-  transition: all 0.1s ease-in;
+}
+
+#description p {
+  max-width: 430px;
 }
 
 @media only screen and (min-width: 768px) {
@@ -424,7 +491,39 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    column-gap: 10px;
+    column-gap: 40px;
+  }
+}
+.back-btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 1%;
+}
+.back-btn button {
+  cursor: pointer;
+  font-size: 18px;
+  background-color: white;
+  color: black;
+  border-radius: 50px;
+  margin-top: 1%;
+  padding: 10px 20px;
+}
+.back-btn button :visited {
+  text-decoration: none;
+  color: black;
+}
+.back-btn button :link {
+  text-decoration: none;
+  color: black;
+}
+
+@media only screen and (max-width: 768px) {
+  .product-title {
+    text-align: center;
+  }
+
+  .sizing-container {
+    text-align: center;
   }
 }
 

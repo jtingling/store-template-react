@@ -7,10 +7,14 @@
     font-family: $raleway-swap;
 }
 
+html, body {
+    margin: 0;
+}
+
 section {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     max-width: 1300px;
     margin: 0 auto;
 

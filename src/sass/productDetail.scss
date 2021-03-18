@@ -5,9 +5,16 @@
     @return map-get($widthRanges, $deviceType);
 }
 
+button {
+    text-decoration: none;
+}
+
 .image-gallery-bullets .image-gallery-bullet.active {
     background: black;
-  }
+}
+.product-description-container {
+    padding: 0 3%;
+}
 
 .modal-window {
     display: flex;
@@ -23,27 +30,80 @@
     max-width: 100%;
 }
 .product-title {
-    text-align: center;
+    text-align: left;
+    padding-top: 60px;
 }
 
 .img-main {
     max-width: 100%;
     height: auto;
 }
-.dropdown-container {
-
+.sizing-options {
+    padding: 2% 2%;
+    text-align: center;
+}
+.size-buttons {
+    background-color: transparent;
+    cursor: pointer;
+    text-align: center;
+    border-radius: 30px;
+    border-color: black;
+    border-style: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    margin: 0 20px;
+    &:focus {
+        border-style: solid;
+        outline: 0;
+    }
+}
+.product-button-container {
+    margin-bottom: 4%;
+}
+.product-addToCart {
+    cursor: pointer;
+    font-size: 18px;
+    background-color: white;
+    color: map-get($buttonColours, "black");
+    border-radius: 50px;
+    margin-top: 1%;
+    padding: 3% 2%;
+    width: 100%;
+}
+.product-buyNow {
+    width: 100%;
+    cursor: pointer;
+    font-size: 18px;
+    background-color: black;
+    color: map-get($buttonColours, "white");
+    border-radius: 50px;
+    margin-top: 1%;
+    padding: 3% 2%;
 }
 
 .dropdown {
     display: flex;
+    cursor: pointer;
+    border-top: none;
+    border-bottom: black solid;
+    border-left: none;
+    border-right: none;
+    border-width: 2px;
+    outline: 0;
     width: 100%;
     text-align: left;
     align-items: center;
     justify-content: space-between;
     padding: 20px 0;
+    background-color: transparent;
     svg {
         font-size: xx-large;
-        transition: all 0.1s ease-in;
+    }
+}
+
+#description {
+    p {
+        max-width: 430px;
     }
 }
 
@@ -52,6 +112,37 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr 1fr;
-        column-gap: 10px;
+        column-gap: 40px;
     }
+}
+.back-btn {
+    display: flex;
+    justify-content: center;
+    margin-top: 1%;
+    button {
+        cursor: pointer;
+        font-size: 18px;
+        background-color: white;
+        color: map-get($buttonColours, "black");
+        border-radius: 50px;
+        margin-top: 1%;
+        padding: 10px 20px;
+        :visited {
+            text-decoration: none;
+            color: black;
+        }
+        :link {
+            text-decoration: none;
+            color: black;
+        }
+    }
+}
+
+@media only screen and (max-width: getWidth("mobile")) {
+    .product-title {
+        text-align: center;
+    }
+    .sizing-container{
+        text-align: center;
+    };
 }

@@ -9,3 +9,13 @@
     height: 100px;
     flex-wrap: nowrap;
 };
+
+@mixin menuBarBlack {
+    display: flex;
+    font-size: xx-large;
+    background-color: white;
+    color: map-get($buttonColours, "black");
+    align-items: center;
+    height: 100px;
+    flex-wrap: nowrap;
+};

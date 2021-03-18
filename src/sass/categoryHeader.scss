@@ -3,8 +3,8 @@
     @return map-get($widthRanges, $deviceType);
 }
 
-@media only screen and (min-width: getWidth("mobile")) {
-    #nav-header{
+@media only screen and (max-width: getWidth("mobile")) {
+    .nav-header{
         display: none;
     }
 }
