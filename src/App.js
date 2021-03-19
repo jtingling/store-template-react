@@ -159,7 +159,8 @@ const App = () => {
         console.log(e);
       }
     }
-    initCheckout(); 
+    initCheckout();
+    window.scrollTo(0,0);
   }, [])
 
   if (checkout === undefined) {
