@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react"
-
+import { Link } from 'react-router-dom';
 import PageNavigation from '../Utilities/PageNavigation'
 import { setShopifyCursor } from '../Utilities/pagination'
 import { queryOptions, query } from '../../ShopifyAPI/queries'
 import { getStoreData } from '../../ShopifyAPI/storefront-api'
-
 import ProductCard from './ProductCard';
 
-const JacketSweaters = () => {
+const JacketSweaters = (props) => {
     const NUM_JacketSweaters = 10;
     const [jacketSweatersData, setjacketSweatersData] = useState(false);
     const [cursor, setCursor] = useState({});
@@ -24,6 +23,21 @@ const JacketSweaters = () => {
         }
         return pageCount;
     }
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    })
+    useEffect(()=>{
+        props.setHeader({
+            title: "Jackets & Sweaters",
+            text: {
+                a: "Some eye-catching text!",
+                b: "something something"
+            },
+            link: <Link to='/aboutus'>Featured Product!</Link>,
+            imageUrl: "https://cdn.shopify.com/s/files/1/0288/6926/3438/collections/bombers1_1080x.png?v=1596623840"
+          })
+    },[])
 
     useEffect(() => {
         try {
@@ -53,6 +67,11 @@ const JacketSweaters = () => {
     } else {
         return (
             <>
+                <p className='section-text'>
+                    We make all of our Japanese streetwear jackets, sweaters, and hoodies ourselves from quality materials that are rigorously tested for comfort and durability.
+                    From the cotton types down to the zippers, we’ve selected only the best products to use in our anime bomber jackets and outerwear. These are trendy jackets you
+                    can be proud to show off every day.
+                </p>
                 <section>
                     {
                         jacketSweatersData.edges.map((product) => {

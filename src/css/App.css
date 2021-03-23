@@ -4,7 +4,7 @@
 }
 
 html, body {
-  margin: 0;
+  margin: 0 auto;
 }
 
 section {
@@ -15,6 +15,16 @@ section {
   margin: 0 auto;
 }
 
+.section-text {
+  margin-top: 8%;
+  margin-bottom: 5%;
+  text-align: center;
+  line-height: 2;
+  max-width: 1300px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .card-container {
   max-width: 33%;
   max-height: auto;
@@ -23,30 +33,6 @@ section {
 .product-img {
   max-width: 100%;
   height: auto;
-}
-
-.nav-list {
-  position: fixed;
-  bottom: 100px;
-  left: 0;
-  right: 0;
-  max-width: 500px;
-  width: auto;
-  margin: 0 auto;
-  background-color: black;
-  border-radius: 50px 50px 0 0;
-}
-.nav-list a:link, .nav-list a:visited {
-  text-decoration: underline;
-  color: white;
-  text-align: center;
-  padding: 0;
-  margin: 0;
-}
-.nav-list a h5 {
-  font-size: 24px;
-  margin: 0;
-  padding: 8px 16px;
 }
 
 @media only screen and (max-width: 768px) {

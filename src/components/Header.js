@@ -1,18 +1,21 @@
-import '../css/header.css';
-import logo from "../assets/logo_transparent.png";
-import { useContext } from 'react'
-import { CheckoutContext } from '../App'
+
+import { useState, useContext, useEffect } from 'react'
 import { faRoad } from '@fortawesome/free-solid-svg-icons';
 import CategoryHeader from './CategoryHeader'
-const Header = (nav) => {
-    const checkoutContext = useContext(CheckoutContext);
+import '../css/header.css'
+const Header = (props) => {
+    const [headerImage, setHeaderImage] = useState(null);
+
+    useEffect(()=>{
+        setHeaderImage(props.header.imageUrl);
+    }, [props.header.imageUrl])
     return (
-        <header className="header-template">
-            <div className='collection-content'>
+        <header id="header-template" style={{ backgroundImage: `url(${headerImage})`}}>
+
+            <div className='header-text-container'>
+                <h1>{props.header.title}</h1>
                 <div className='header-content'>
                     <div className='nav-container'>
-                        <div className='logo-container-header'>
-                        </div>
                         <CategoryHeader className={"nav-header"} />
                     </div>
                 </div>

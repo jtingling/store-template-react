@@ -1,5 +1,12 @@
+import { useEffect } from 'react';
+const Support = (props) => {
 
-const Support = () => {
+    useEffect(() => {
+        props.setHeader({
+            imageUrl: ""
+        })
+        window.scroll(0, 0)
+    }, [])
 
     return (
         <section>

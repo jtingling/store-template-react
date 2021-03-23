@@ -1,8 +1,15 @@
+import { useEffect } from 'react';
+import '../css/aboutus.css'
 
-const AboutUs = () => {
-
+const AboutUs = (props) => {
+    useEffect(()=>{
+        props.setHeader({
+            imageUrl: ""
+          })
+        window.scroll(0,0)
+    },[])
     return (
-        <section>
+        <section >
             <h1>About Us</h1>
             <div>
                 <h3>Our Philosophy</h3>

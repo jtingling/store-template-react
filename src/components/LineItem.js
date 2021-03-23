@@ -4,7 +4,7 @@ import '../css/lineItem.css'
 
 const LineItem = (props) => {
     let checkout = useContext(CheckoutContext);
-
+    
     return (
         <>
             <div className='cart-item'>

@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+input {
+  outline: 0;
+  border: transparent;
+  border-bottom: solid 1px;
+  text-align: center;
+}
+
+.cart-item {
+  max-width: 1300px;
+  width: 100%;
+}
+
+.row-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+}
+
+.row-product {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  justify-items: start;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.row-product-img {
+  max-width: 200px;
+  height: auto;
+}
+.row-product-img img {
+  width: 100%;
+  height: auto;
+}
+
+.row-item {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr;
+  justify-items: flex-end;
+  align-items: center;
+}
+
+.row-item-quantity button {
+  margin-top: 3%;
+}
+
+.remove-btn {
+  cursor: pointer;
+  font-size: 12px;
+  background-color: transparent;
+  color: black;
+  border: none;
+}
+
+#mobile-price {
+  display: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .row-items {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  .row-item {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-items: flex-end;
+    align-items: center;
+  }
+
+  .row-product-img {
+    max-width: 100px;
+  }
+
+  .row-item-total {
+    display: none;
+  }
+
+  .row-product {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 1fr;
+    justify-items: start;
+    align-items: center;
+    column-gap: 10px;
+    column-gap: 0px;
+  }
+
+  .row-product-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-content: space-evenly;
+  }
+  .row-product-info p {
+    margin: 0;
+  }
+
+  .row-item-price {
+    display: none;
+  }
+
+  #mobile-price {
+    display: inline;
+    text-align: right;
+  }
+}
+
+/*# sourceMappingURL=lineItem.css.map */

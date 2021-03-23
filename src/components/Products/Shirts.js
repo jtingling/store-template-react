@@ -2,12 +2,12 @@ import { useEffect, useState } from "react"
 import { queryOptions } from '../../ShopifyAPI/queries'
 import { getStoreData } from '../../ShopifyAPI/storefront-api'
 import { query } from '../../ShopifyAPI/queries'
-
+import { Link } from 'react-router-dom';
 import PageNavigation from '../Utilities/PageNavigation'
 import { setShopifyCursor } from '../Utilities/pagination'
 import ProductCard from './ProductCard';
 
-const Shirts = () => {
+const Shirts = (props) => {
     const NUM_SHIRTS = 23;
 
     const [shirtData, setShirtData] = useState(false);
@@ -25,6 +25,20 @@ const Shirts = () => {
         }
         return pageCount;
     }
+    useEffect(() => {
+        window.scroll(0, 0);
+    },[])
+    useEffect(()=>{
+        props.setHeader({
+            title: "Shirts",
+            text: {
+              a: "Marketing Copy here",
+              b: "something something"
+            },
+            link: <Link to='/aboutus'>Featured Product!</Link>,
+            imageUrl: "https://cdn.shopify.com/s/files/1/0288/6926/3438/collections/Rudy_Bibisama_20_of_70_1728x.jpg?v=1592948932"
+          })
+    },[])
 
     useEffect(() => {
         try {
@@ -51,19 +65,22 @@ const Shirts = () => {
     }, [cursor])
 
     if (!shirtData) {
-        {console.log(shirtData)}
         return <h1>Data not ready yet.</h1>
     } else {
         return (
             <>
+                <p className='section-text'>
+                    These Japanese streetwear clothing styles are perfect for men and women who want to make a statement. 
+                    From playful to explosive designs, you can find something for any mood and occasion. Impress your friends with original anime shirts they’ve never seen, but definitely want!
+                </p>
                 <section>
                     {
                         shirtData.edges.map((product) => {
                             return (
-                            <ProductCard
-                                key={product.node.id}
-                                product={product.node}
-                                images={product.node.images} />
+                                <ProductCard
+                                    key={product.node.id}
+                                    product={product.node}
+                                    images={product.node.images} />
                             )
                         })
                     }

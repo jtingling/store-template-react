@@ -2,9 +2,41 @@
 @function getWidth($deviceType) {
     @return map-get($widthRanges, $deviceType);
 }
-
+.nav-other {
+    display: flex;
+    justify-content: space-evenly;
+    max-width: 1300px;
+    height: auto;
+    margin: 0 auto;
+}
+.nav-list {
+    position: fixed;
+    bottom: 100px;
+    left: 0;
+    right: 0;
+    max-width: 500px;
+    width: auto; 
+    margin: 0 auto;
+    background-color: black;
+    border-radius: 50px 50px 0 0;
+    a:link, a:visited {
+        text-decoration: underline;     
+        color: white;  
+        text-align: center;
+        padding: 0;
+        margin: 0;
+       }
+    a h5 {
+        font-size: 24px;
+        margin: 0;
+        padding: 8px 16px;
+    }
+}
 @media only screen and (max-width: getWidth("mobile")) {
     .nav-header{
+        display: none;
+    }
+    .nav-other {
         display: none;
     }
 }

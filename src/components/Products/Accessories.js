@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react"
-
+import { Link } from 'react-router-dom';
 import PageNavigation from '../Utilities/PageNavigation'
 import { setShopifyCursor } from '../Utilities/pagination'
 import { queryOptions, query } from '../../ShopifyAPI/queries'
 import { getStoreData } from '../../ShopifyAPI/storefront-api'
-
 import ProductCard from './ProductCard';
-
-const Accessories = () => {
+const Accessories = (props) => {
     const NUM_ACCESSORIES = 6;
     const [accessoryData, setAccessoryData] = useState(false);
     const [cursor, setCursor] = useState({});
@@ -24,6 +22,21 @@ const Accessories = () => {
         }
         return pageCount;
     }
+
+    useEffect(() => {
+        window.scroll(0, 0);
+    },[])
+    useEffect(()=>{
+        props.setHeader({
+            title: "Accessories",
+            text: {
+              a: "Some eye-catching text!",
+              b: "something something"
+            },
+            link: <Link to='/aboutus'>Featured Product!</Link>,
+            imageUrl: "https://cdn.shopify.com/s/files/1/0288/6926/3438/collections/2_900x.jpg?v=1593078803"
+          })
+    },[])
 
     useEffect(() => {
         try {
@@ -52,6 +65,10 @@ const Accessories = () => {
     } else {
         return (
             <>
+                <p className="section-text">
+                    Each piece is hand embroidered and we use state of the art techniques that make the designs pop and come to life.
+                    12 hours worth of effort on a single item makes our embroidered streetwear apparel a work of art for your wardrobe.
+                </p>
                 <section>
                     {
                         accessoryData.edges.map((product) => {

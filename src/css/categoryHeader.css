@@ -1,6 +1,42 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+.nav-other {
+  display: flex;
+  justify-content: space-evenly;
+  max-width: 1300px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.nav-list {
+  position: fixed;
+  bottom: 100px;
+  left: 0;
+  right: 0;
+  max-width: 500px;
+  width: auto;
+  margin: 0 auto;
+  background-color: black;
+  border-radius: 50px 50px 0 0;
+}
+.nav-list a:link, .nav-list a:visited {
+  text-decoration: underline;
+  color: white;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
+.nav-list a h5 {
+  font-size: 24px;
+  margin: 0;
+  padding: 8px 16px;
+}
+
 @media only screen and (max-width: 768px) {
   .nav-header {
+    display: none;
+  }
+
+  .nav-other {
     display: none;
   }
 }

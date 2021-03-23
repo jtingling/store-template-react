@@ -1,6 +1,6 @@
 import './css/app.css'
 import React, { useEffect, useState } from "react";
-import { Switch, Route, useLocation } from 'react-router-dom';
+import { Switch, Route, useLocation, Link } from 'react-router-dom';
 
 import { client } from './ShopifyAPI/client'
 
@@ -30,12 +30,15 @@ const App = () => {
       quantity: 0
     }
   });
-  let location = useLocation();
+  const [headerData, setHeaderData] = useState({
+    imageUrl: "https://cdn.shopify.com/s/files/1/0288/6926/3438/files/IMG_7907_3024x.JPG?v=1593068622"
+  })
+    let location = useLocation();
 
   const toggleMenu = () => {
     isOpen ? setIsOpen(false) : setIsOpen(true);
 
-}
+  }
 
   const addToCart = (quantity, variantId) => {
     const itemsToAdd = {
@@ -43,16 +46,16 @@ const App = () => {
       quantity: quantity
     }
     client.checkout.addLineItems(checkout.id, itemsToAdd).then(res => {
-        setCheckout({
-          id: res.id,
-          webUrl: res.webUrl,
-          cart: {
-            lineItems: res.lineItems,
-            subTotal: res.lineItemsSubtotalPrice.amount,
-            quantity: getCartQuantity()
-          }
-        })
+      setCheckout({
+        id: res.id,
+        webUrl: res.webUrl,
+        cart: {
+          lineItems: res.lineItems,
+          subTotal: res.lineItemsSubtotalPrice.amount,
+          quantity: getCartQuantity()
+        }
       })
+    })
   }
 
   const deleteItem = (lineItemId) => {
@@ -79,14 +82,14 @@ const App = () => {
       quantity: parseInt(event.target.value, 10)
     }]
     await client.checkout.updateLineItems(checkout.id, updateLineItem).then(res => setCheckout({
-        id: res.id,
-        webUrl: res.webUrl,
-        cart: {
-          lineItems: res.lineItems,
-          subTotal: res.lineItemsSubtotalPrice.amount,
-          quantity: getCartQuantity()
-        }
-      }))
+      id: res.id,
+      webUrl: res.webUrl,
+      cart: {
+        lineItems: res.lineItems,
+        subTotal: res.lineItemsSubtotalPrice.amount,
+        quantity: getCartQuantity()
+      }
+    }))
       .catch(e => console.log(e))
   }
 
@@ -107,9 +110,9 @@ const App = () => {
     window.location.replace(checkout.webUrl);
   }
 
-  const getCartQuantity =  async () => {
+  const getCartQuantity = async () => {
     let cartId = window.localStorage.getItem('cart');
-    let quantity= 0;
+    let quantity = 0;
     await client.checkout.fetch(cartId).then(res => {
       res.lineItems.map((item) => {
         return quantity += item.quantity;
@@ -138,8 +141,8 @@ const App = () => {
           })
         } else {
           let totalQuantity = 0;
-          client.checkout.fetch(cartId).then((checkout)=>{
-            checkout.lineItems.map((item)=> {
+          client.checkout.fetch(cartId).then((checkout) => {
+            checkout.lineItems.map((item) => {
               return totalQuantity += item.quantity
             })
             setCheckout({
@@ -152,7 +155,7 @@ const App = () => {
               }
             })
           })
-          .catch(e => console.log(e))
+            .catch(e => console.log(e))
         }
       }
       catch (e) {
@@ -160,7 +163,6 @@ const App = () => {
       }
     }
     initCheckout();
-    window.scrollTo(0,0);
   }, [])
 
   if (checkout === undefined) {
@@ -176,31 +178,35 @@ const App = () => {
         quantity: getCartQuantity(),
         toggleMenu: toggleMenu,
         isOpen: isOpen,
-        setIsOpen: setIsOpen}}>
-        <Header checkout={checkout}/>
+        setIsOpen: setIsOpen
+      }}>
+        {
+          location.pathname === "/painting" || location.pathname === "/accessories" || location.pathname === '/shoes' || location.pathname === '/' ? <Header location={location} header={headerData}/> : <CategoryHeader className={"nav-other"}/> 
+        }
         <Switch location={location}>
-          <Route path='/' exact><Landing /></Route>
-          <Route path='/aboutus'><AboutUs /></Route>
-          <Route path='/support'><Support /></Route>
-          <Route path='/painting' location={location}><JacketSweaters /></Route>
-          <Route path='/accessories' location={location}><Accessories /></Route>
-          <Route path='/shoes' location={location}><Shirts /></Route>
-          <Route path='/cart'><Cart checkout={checkout}/></Route>
-          <Route path='/:product'><ProductDetailModal location={location}/></Route>
+          <Route path='/' exact><Landing setHeader={setHeaderData} /></Route>
+          <Route path='/aboutus'><AboutUs setHeader={setHeaderData}/></Route>
+          <Route path='/support'><Support setHeader={setHeaderData}/></Route>
+          <Route path='/painting' location={location} ><JacketSweaters setHeader={setHeaderData} /></Route>
+          <Route path='/accessories' location={location} ><Accessories setHeader={setHeaderData} /></Route>
+          <Route path='/shoes' location={location} ><Shirts setHeader={setHeaderData} /></Route>
+          <Route path='/cart'><Cart checkout={checkout} location={location} /></Route>
+          <Route path='/:product'><ProductDetailModal location={location} /></Route>
         </Switch>
         <Footer checkout={checkout} />
+        {console.log(isOpen)}
         {
-          isOpen ? <CategoryHeader isOpen={isOpen}  className={"nav-list"}/> : <></>
+          isOpen && location.pathname !== "/cart" ? <CategoryHeader isOpen={isOpen} className={"nav-list"} /> : <></>
         }
-        <Menu checkout={checkout}/>
+        {
+          location.pathname === "/cart" ? <></> : <Menu checkout={checkout} location={location} />
+        }
       </CheckoutContext.Provider>
-
     )
-
   }
 }
-//TODO: Product Modal window
+
 //TODO: Breadcrumbs
 //TODO: Static Pages (Styling)
-//TODO: Cart and Checkout
+
 export default App;

@@ -16,7 +16,7 @@ const Cart = (props) => {
     } else {
         return (
             <>
-                {console.log(props.checkout)}
+            {console.log(props.location)}
                 <section className="cart">
                     <h1 className='cart-title'>CART</h1>
                     <div className='cart-labels'>
@@ -27,6 +27,7 @@ const Cart = (props) => {
                     </div>
                     <div className='cart-container'>
                         {
+                            props.checkout.cart.quantity === 0 ? <p><i>Cart is empty</i></p> :
                             props.checkout.cart.lineItems.map((lineItem, idx) => {
                                 return <LineItem key={idx} lineItem={lineItem} checkoutId={props.checkout.id} />
                             })

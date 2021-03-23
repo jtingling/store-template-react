@@ -41,7 +41,6 @@ const ProductDetailModal = (props) => {
         return (
             <>
                 <article className='modal-window'>
-                    {console.log(productData)}
                     <div className='product-images-container'>
                         <ImageGallary
                             items={getImages()}

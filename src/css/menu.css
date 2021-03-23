@@ -56,7 +56,11 @@
   align-items: center;
   justify-content: center;
 }
-#menu #menu-text {
+#menu div {
+  display: flex;
+  align-items: center;
+}
+#menu div #menu-text {
   margin-left: 20px;
 }
 
@@ -71,7 +75,7 @@
     right: 0;
     padding: 24px 0 24px 0;
     text-align: center;
-    margin: auto;
+    margin: 0 auto;
   }
 
   .pill-menu-open {
@@ -84,7 +88,7 @@
     right: 0;
     padding: 24px 0 24px 0;
     text-align: center;
-    margin: auto;
+    margin: 0 auto;
   }
 }
 @media only screen and (min-width: 768px) {
