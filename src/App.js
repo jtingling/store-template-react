@@ -181,7 +181,7 @@ const App = () => {
         setIsOpen: setIsOpen
       }}>
         {
-          location.pathname === "/painting" || location.pathname === "/accessories" || location.pathname === '/shoes' || location.pathname === '/' ? <Header location={location} header={headerData}/> : <CategoryHeader className={"nav-other"}/> 
+          location.pathname === "/painting" || location.pathname === "/accessories" || location.pathname === '/shoes'   ? <Header location={location} header={headerData}/> : <CategoryHeader className={"nav-other"}/> 
         }
         <Switch location={location}>
           <Route path='/' exact><Landing setHeader={setHeaderData} /></Route>
@@ -205,8 +205,5 @@ const App = () => {
     )
   }
 }
-
-//TODO: Breadcrumbs
-//TODO: Static Pages (Styling)
 
 export default App;

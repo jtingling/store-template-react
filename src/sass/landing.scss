@@ -1,0 +1,61 @@
+@import "../../node_modules/react-image-gallery/styles/scss/image-gallery.scss";
+@import "./buttons";
+@function getWidth($deviceType) {
+    @return map-get($widthRanges, $deviceType);
+}
+
+.landing-section{
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+.thumbnail-categories {
+    height: auto;
+    margin: 0 auto;
+}
+.hero-top {
+    width: 100%;
+    height: 100px;
+    margin: 5% auto;
+}
+.video-container {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    margin: 0 auto;
+    width: 100%;
+    height: auto;
+}
+iframe {
+    display: block;
+    margin: 0 auto;
+    width: 90%;
+    height: 480px;
+}
+.video-title {
+    text-align: center;
+    font-size: 46px;
+}
+.video-subtitle {
+    text-align: center;
+    font-size: 32px;
+}
+.video-subtext {
+    font-size: 24px;
+    text-align: center;
+    width: 90%;
+    margin: 0 auto;
+    line-height: 2.0;
+}
+
+.card-container {
+    display: inline-block;
+}
+
+@media only screen and (max-width: getWidth("mobile")) {
+    iframe {
+        width: 90%;
+        height: 360px;
+    }
+}

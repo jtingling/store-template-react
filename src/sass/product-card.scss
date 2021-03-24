@@ -1,0 +1,20 @@
+
+
+.product-description {
+    text-align: center;
+    white-space: pre-wrap;
+}
+
+@media (pointer: fine) {
+    .product-description {
+        visibility: hidden;
+    }
+    .carousel {
+        visibility: hidden;
+    }
+}
+
+.product-description:hover {
+    visibility: show;
+}
+

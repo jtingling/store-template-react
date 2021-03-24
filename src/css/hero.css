@@ -1,0 +1,16 @@
+.hero-middle {
+  background-image: url("https://cdn.shopify.com/s/files/1/0288/6926/3438/files/Web1_1728x.png?v=1593081132");
+  width: 100%;
+  max-width: 2000px;
+}
+
+.hero-description {
+  position: relative;
+  left: 50px;
+  top: 40px;
+  background-color: white;
+  width: 40%;
+  height: 526px;
+}
+
+/*# sourceMappingURL=hero.css.map */

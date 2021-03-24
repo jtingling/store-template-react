@@ -5,14 +5,14 @@
 
 html, body {
   margin: 0 auto;
+  max-width: 1300px;
+  width: 100%;
 }
 
 section {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  max-width: 1300px;
-  margin: 0 auto;
 }
 
 .section-text {
@@ -20,7 +20,6 @@ section {
   margin-bottom: 5%;
   text-align: center;
   line-height: 2;
-  max-width: 1300px;
   margin-left: auto;
   margin-right: auto;
 }

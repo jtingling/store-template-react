@@ -1,0 +1,12 @@
+.feature-container {
+  overflow: auto;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+
+.feature-title {
+  font-size: 32px;
+  text-align: center;
+}
+
+/*# sourceMappingURL=featured.css.map */

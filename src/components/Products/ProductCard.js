@@ -52,7 +52,7 @@ const ProductCard = (product) => {
           <div>
             <p className={visibility ? 'product-description:hover' : 'product-description'}>
               {product.product.handle}<br />
-              {product.product.variants.edges[0].node.price}
+              ${product.product.variants.edges[0].node.price}
             </p>
           </div>
         </article>

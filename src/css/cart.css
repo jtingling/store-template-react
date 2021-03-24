@@ -1,8 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
 .cart {
   margin: 0 auto;
-  width: 100%;
-  max-width: 1300px;
 }
 
 .cart-title {
@@ -47,7 +45,6 @@
   grid-template-rows: 1fr;
   justify-items: right;
   align-items: center;
-  max-width: 1300px;
   width: 100%;
   border-top: black solid;
   border-left: none;
