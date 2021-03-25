@@ -1,4 +1,6 @@
 .feature-container {
+  max-width: 1300px;
+  margin: 0 auto;
   overflow: auto;
   white-space: nowrap;
   overflow-x: scroll;

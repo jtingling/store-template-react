@@ -388,8 +388,9 @@
 }
 
 .thumbnail-categories {
-  height: auto;
+  max-width: 1300px;
   margin: 0 auto;
+  height: auto;
 }
 
 .hero-top {
@@ -399,10 +400,11 @@
 }
 
 .video-container {
+  max-width: 1300px;
+  margin: 0 auto;
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: auto auto;
-  margin: 0 auto;
   width: 100%;
   height: auto;
 }

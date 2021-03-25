@@ -1,4 +1,7 @@
+@import "./layout";
+
 .feature-container {
+    @include layout;
     overflow: auto;
     white-space: nowrap;
     overflow-x: scroll;

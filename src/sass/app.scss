@@ -5,14 +5,11 @@
 }
 :root {
     font-family: $raleway-swap;
-}
-
-html, body {
     margin: 0 auto;
-    max-width: 1300px;
-    width: 100%;
 }
-
+body {
+    margin: 0;
+}
 
 section {
     display: flex;

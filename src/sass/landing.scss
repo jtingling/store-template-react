@@ -1,5 +1,6 @@
 @import "../../node_modules/react-image-gallery/styles/scss/image-gallery.scss";
 @import "./buttons";
+@import "./layout";
 @function getWidth($deviceType) {
     @return map-get($widthRanges, $deviceType);
 }
@@ -11,8 +12,8 @@
     margin: 0 auto;
 }
 .thumbnail-categories {
+    @include layout;
     height: auto;
-    margin: 0 auto;
 }
 .hero-top {
     width: 100%;
@@ -20,10 +21,10 @@
     margin: 5% auto;
 }
 .video-container {
+    @include layout;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: auto auto;
-    margin: 0 auto;
     width: 100%;
     height: auto;
 }

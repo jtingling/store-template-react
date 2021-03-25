@@ -1,13 +1,54 @@
+@import "./buttons";
+@function getWidth($deviceType) {
+    @return map-get($widthRanges, $deviceType);
+}
+.hero-container {
+    position: relative;
+    left: 0;
+    width: auto;
+    height: auto;
+    background-color: black;
+}
 .hero-middle {
     background-image: url("https://cdn.shopify.com/s/files/1/0288/6926/3438/files/Web1_1728x.png?v=1593081132");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 90%;
     width: 100%;
-    max-width: 2000px;
+    height: 625px;
 }
 .hero-description {
-    position: relative;
+}
+.overlay-container {
+    position: absolute;
+    top: 50px;
     left: 50px;
-    top: 40px;
-    background-color: white;
-    width: 40%;
-    height: 526px;
+    background-color: blue;
+
+}
+
+@media only screen and (max-width: getWidth("mobile")) {
+    .hero-container {
+
+    }
+    .hero-description {
+        position: absolute;
+        background-color: blue;
+    }
+    .hero-middle {
+        height: 315px;
+    }
+    .hero-text {
+
+    }
+}
+@media only screen and (min-width: getWidth("mobile")) {
+    .hero-middle {
+        height: 800px;
+    }
+}
+@media only screen and (min-width: getWidth("wideScreen")) {
+    .hero-middle {
+        height: 1250px;
+    }
 }

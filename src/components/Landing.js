@@ -45,7 +45,7 @@ const Landing = (props) => {
         </div>
       </div>
       <Featured/>
-      <Hero/>
+      <Hero className='hero-middle'/>
     </section>
   )
 }

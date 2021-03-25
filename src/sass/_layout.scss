@@ -1,0 +1,7 @@
+
+$page-width: 1300px;
+
+@mixin layout {
+    max-width: $page-width;
+    margin: 0 auto;
+}
