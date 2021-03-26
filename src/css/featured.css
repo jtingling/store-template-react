@@ -1,13 +1,25 @@
-.feature-container {
-  max-width: 1300px;
-  margin: 0 auto;
+.feature-container-shoes {
   overflow: auto;
   white-space: nowrap;
   overflow-x: scroll;
+  margin-bottom: 5%;
 }
 
-.feature-title {
-  font-size: 32px;
+.feature-title-shoes {
+  font-size: 44px;
+  text-align: center;
+}
+
+.feature-container-accessories {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.feature-title-accessories {
+  font-size: 44px;
   text-align: center;
 }
 

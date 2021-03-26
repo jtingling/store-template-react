@@ -1,4 +1,5 @@
 @import "./buttons";
+@import "./layout";
 @function getWidth($deviceType) {
     @return map-get($widthRanges, $deviceType);
 }
@@ -6,7 +7,7 @@
     display: flex;
     justify-content: space-evenly;
     height: auto;
-    margin: 0 auto;
+    @include layout;
 }
 .nav-list {
     position: fixed;

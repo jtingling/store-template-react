@@ -1,12 +1,22 @@
 @import "./layout";
 
-.feature-container {
-    @include layout;
+.feature-container-shoes {
     overflow: auto;
     white-space: nowrap;
     overflow-x: scroll;
+    margin-bottom: 5%;
 }
-.feature-title {
-    font-size: 32px;
+.feature-title-shoes {
+    font-size: 44px;
+    text-align: center;
+}
+.feature-container-accessories {
+    @include layout;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.feature-title-accessories {
+    font-size: 44px;
     text-align: center;
 }

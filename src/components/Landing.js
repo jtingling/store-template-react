@@ -22,7 +22,6 @@ const Landing = (props) => {
   }, [])
   return (
     <section className='landing-section'>
-      {console.log(context)}
       <div className='hero-top'>
       </div>
       <div className='thumbnail-categories'>
@@ -40,12 +39,28 @@ const Landing = (props) => {
             and Bibisama Apparel.  Vincent Van Gogh was the original Starboy who was infatuated with the night
             sky and all it encompassed. Using bright colours and his trademark brush stroke, this exclusive illustration
             of “Starry Night” stretches past our ordinary perceptions and into the unknown.
-            <br/><Link to='/painting'>Get yours now.</Link>
+            <br /><Link to='/painting'>Get yours now.</Link>
           </p>
         </div>
       </div>
-      <Featured/>
-      <Hero className='hero-middle'/>
+      <Featured productType={"SHOES"} className={["feature-title-shoes", "feature-container-shoes"]} />
+      <Hero productType={"PAINTING"} className='hero-middle' />
+      <Featured productType={"ACCESSORIES"} className={["feature-title-accessories", "feature-container-accessories"]} />
+      <div className={"feature-block"}>
+        <div className="page-width">
+          <div className={"feature-text"}>
+            <h2>Craftsmanship Meets Style in Anime Streetwear</h2>
+            <p>At <a href="https://bibisama.com/pages/about" title="https://bibisama.com/pages/about" className="text-link">
+              Bibisama</a>, we focus on combining beautiful artwork with quality materials. The result is Asian and anime
+              pop culture-inspired clothing that’s comfortable to wear at home, and stylish in the streets.&nbsp;<br />
+            </p>
+            <p>Our products are meticulously crafted to ensure durability and serve as a timeless companion to your ensembles.
+            We make all of our anime streetwear in house with high-tech processes and thoroughly tested materials. Our designs
+            are original works that you won’t find anywhere else.
+          </p>
+          </div>
+        </div>
+      </div>
     </section>
   )
 }

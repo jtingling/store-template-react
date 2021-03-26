@@ -8,6 +8,7 @@
     width: auto;
     height: auto;
     background-color: black;
+    margin-bottom: 200px;
 }
 .hero-middle {
     background-image: url("https://cdn.shopify.com/s/files/1/0288/6926/3438/files/Web1_1728x.png?v=1593081132");
@@ -18,22 +19,87 @@
     height: 625px;
 }
 .hero-description {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    div {
+        width: 100%;
+    }
+    h4 {
+        text-align: center;
+        letter-spacing: 4px;
+        width: 100%;
+        padding-top: 10%;
+    }
+    h2 {
+        font-size: 54px;
+        text-align: center;
+        margin: 0 auto;
+    }
+    button {
+        width: 33%;
+        cursor: pointer;
+        font-size: 18px;
+        background-color: black;
+        color: white;
+        border-radius: 50px;
+        margin-top: 1%;
+        padding: 5% 2%;
+        a:visited {
+            color: white;
+            outline: 0;
+        }
+        a:link {
+            text-decoration: none;
+            outline: 0;
+        }
+    }
+    p {
+        font-size: 20px;
+        text-align: center;
+        line-height: 2.0;
+    }
 }
+
 .overlay-container {
     position: absolute;
-    top: 50px;
-    left: 50px;
-    background-color: blue;
+    top: 10%;
+    left: 5%;
+    width: 450px;
+    height: 675px;
+    background-color: hsl(0,0%,96%);
 
 }
 
 @media only screen and (max-width: getWidth("mobile")) {
     .hero-container {
-
+        margin-bottom: 400px;
+    }
+    .overlay-container {
+        top: 275px;
+        left: 5%;
+        width: 90%;
+        height: 100%;
     }
     .hero-description {
         position: absolute;
-        background-color: blue;
+        h4 {
+            text-align: center;
+            width: 100%;
+            padding-top: 3%;
+            margin: 2% auto;
+        }
+        h2 {
+            font-size: 32px;
+            text-align: center;
+            margin: 0 auto;
+        }
+        p {
+            font-size: 14px;
+            text-align: center;
+            line-height: 2.0;
+        }
     }
     .hero-middle {
         height: 315px;
@@ -48,6 +114,17 @@
     }
 }
 @media only screen and (min-width: getWidth("wideScreen")) {
+    .overlay-container {
+        top: 5%;
+        left: 2%;
+        width: 450px;
+        height: 600px;
+    }
+    .hero-description{
+        h4 {
+            padding-top: 5%;
+        }
+    }
     .hero-middle {
         height: 1250px;
     }

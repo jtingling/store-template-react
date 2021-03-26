@@ -3,6 +3,7 @@
   display: flex;
   justify-content: space-evenly;
   height: auto;
+  max-width: 1300px;
   margin: 0 auto;
 }
 

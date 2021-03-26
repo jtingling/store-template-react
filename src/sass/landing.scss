@@ -49,14 +49,81 @@ iframe {
     margin: 0 auto;
     line-height: 2.0;
 }
-
 .card-container {
     display: inline-block;
+}
+.feature-block {
+    width: 100%;
+    background-color: black;
+    margin-top: 5%;
+    .page-width {
+        width: 850px;
+        height: auto;
+        margin: 0 auto;
+    }
+    .feature-text {
+        display: grid;
+        grid-template-columns: 850px;
+        grid-template-rows: 125px 150px 300px;
+        justify-content: center;
+        align-items: center;
+        h2 {
+            font-size: 22px;
+            text-align: center;
+            color: white;
+        }
+        p {
+            font-size: 22px;
+            line-height: 2.0;
+            text-align: center;
+            color: white;
+            
+            a:link {
+                color: white;
+            }
+            a:visited {
+                color: white;
+            }
+        }
+    }
 }
 
 @media only screen and (max-width: getWidth("mobile")) {
     iframe {
         width: 90%;
         height: 360px;
+    }
+    .feature-block {
+        .page-width {
+            display: grid;
+            align-content: center;
+            width: 100%;
+            height: 750px;
+        }
+        .feature-text {
+            display: grid;
+            grid-template-columns: 100%;
+            grid-template-rows: 15% 35% 50%;
+            justify-content: center;
+            align-content: center;
+            h2 {
+                font-size: 22px;
+                text-align: center;
+                color: white;
+            }
+            p {
+                font-size: 18px;
+                line-height: 2.0;
+                text-align: center;
+                color: white;
+                
+                a:link {
+                    color: white;
+                }
+                a:visited {
+                    color: white;
+                }
+            }
+        }
     }
 }

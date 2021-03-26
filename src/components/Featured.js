@@ -11,7 +11,7 @@ const Featured = (props) => {
   useEffect(() => {
     try {
       console.log("Fetching product data...");
-      getStoreData(query(...["first", undefined, undefined, "SHOES"])).then((queryData) => { setFeaturedData(queryData.data.products) })
+      getStoreData(query(...["first", undefined, undefined, `${props.productType}`])).then((queryData) => { setFeaturedData(queryData.data.products) })
     } catch (e) {
       console.log(e)
     }
@@ -22,8 +22,14 @@ const Featured = (props) => {
   } else {
     return (
       <article>
-        <h2 className='feature-title'>FEATURED</h2>
-        <div className='feature-container'>
+        {
+          props.productType === "SHOES" ? <h2 className={props.className[0]}>FEATURED</h2> : <></>
+        }
+        {
+          props.productType === "ACCESSORIES" ? <h2 className={props.className[0]}>Stylish Jackets &amp; Sweaters</h2> : <></>
+        }
+
+        <div className={props.className[1]}>
           {
             featuredData.edges.map((product) => {
               return (
