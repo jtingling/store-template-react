@@ -3,11 +3,18 @@
 @function getWidth($deviceType) {
     @return map-get($widthRanges, $deviceType);
 }
+a:visited, a:link {
+    text-decoration: none;
+    color: white;
+}
 .nav-other {
+    background-color: black;
+}
+.nav-other-container {
     display: flex;
     justify-content: space-evenly;
-    height: auto;
-    @include layout;
+    max-width: 1300px;
+    margin: 0 auto;
 }
 .nav-list {
     position: fixed;
@@ -41,20 +48,50 @@
     justify-items: center;
     align-items: center;
     margin: 0 auto;
-    width: 100%;
-    a {
-        border-radius: 25px;
-        border-style: solid;
-        border-color: black;
-        width: 75%;
-        height: auto;
-        text-align: center;
-    }
 }
+
 .thumbnail-links {
     font-size: 32px;
-    text-decoration: none;
     text-align: center;
+    margin: 0 auto;
+    padding-top: 25%;
+    padding-bottom: 25%;
+}
+.shirts {
+    background-image: url("https://cdn.shopify.com/s/files/1/0288/6926/3438/files/WeChat_Image_20200805015415_360x.jpg?v=1596617744");
+    background-position: center center;
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    border-radius: 25px;
+    width: 360px;
+    height: 360px;
+}
+.painting {
+    background-image: url("https://cdn.shopify.com/s/files/1/0288/6926/3438/files/6P1A9507_1_540x.jpg?v=1596515372");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    border-radius: 25px;
+    width: 360px;
+    height: 360px;
+}
+.accessories {
+    background-image: url("https://cdn.shopify.com/s/files/1/0288/6926/3438/files/WeChat_Image_20200805015708_540x.jpg?v=1596617853");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    border-radius: 25px;
+    width: 360px;
+    height: 360px;
+}
+
+@media only screen and (max-width: getWidth("laptop")) {
+    .shirts, .painting, .accessories {
+        width: 240px;
+        height: 240px;
+    }
 }
 
 @media only screen and (max-width: getWidth("mobile")) {
@@ -66,20 +103,11 @@
     }
     .thumbnails {
         display: grid;
-        grid-template-columns: auto;
-        grid-template-rows: auto;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
         row-gap: 10px;
         justify-items: center;
         align-items: center;
         margin: 0 auto;
-        width: 100%;
-        a {
-            border-radius: 25px;
-            border-style: solid;
-            border-color: black;
-            width: 75%;
-            height: auto;
-            text-align: center;
-        }
     }
 }

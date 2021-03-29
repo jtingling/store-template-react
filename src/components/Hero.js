@@ -19,7 +19,6 @@ const Hero = (props) => {
   } else {
     return (
       <div className='hero-container'>
-        {console.log(featuredItem)}
         <article className={props.className}>
         </article>
         <div className='overlay-container'>

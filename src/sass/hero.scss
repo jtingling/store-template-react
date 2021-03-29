@@ -1,7 +1,9 @@
 @import "./buttons";
+@import "./layout";
 @function getWidth($deviceType) {
     @return map-get($widthRanges, $deviceType);
 }
+
 .hero-container {
     position: relative;
     left: 0;
@@ -103,9 +105,6 @@
     }
     .hero-middle {
         height: 315px;
-    }
-    .hero-text {
-
     }
 }
 @media only screen and (min-width: getWidth("mobile")) {

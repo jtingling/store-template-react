@@ -184,7 +184,7 @@ const App = () => {
           location.pathname === "/painting" || location.pathname === "/accessories" || location.pathname === '/shoes'   ? <Header location={location} header={headerData}/> : <CategoryHeader className={"nav-other"}/> 
         }
         <Switch location={location}>
-          <Route path='/' exact><Landing setHeader={setHeaderData} /></Route>
+          <Route path='/' exact><Landing setHeader={setHeaderData} header={headerData}/></Route>
           <Route path='/aboutus'><AboutUs setHeader={setHeaderData}/></Route>
           <Route path='/support'><Support setHeader={setHeaderData}/></Route>
           <Route path='/painting' location={location} ><JacketSweaters setHeader={setHeaderData} /></Route>
