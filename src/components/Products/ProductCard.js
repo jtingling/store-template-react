@@ -1,12 +1,13 @@
 import '../../css/product-card.css'
 import { Link, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import stickyHeader from '../Utilities/scrollableHeader.js';
+import { useState, useEffect } from 'react';
 
 const ProductCard = (product) => {
   const [visibility, setVisibility] = useState(false);
   const [show, setShow] = useState(false);
-  let location = useLocation();
 
+  let location = useLocation();
 
   const showText = () => {
     setVisibility(true);
@@ -20,6 +21,11 @@ const ProductCard = (product) => {
     setShow(!show);
 
   }
+
+  useEffect(()=>{
+    stickyHeader('nav-other');
+  }, [])
+
   if (product.product === undefined) {
     return <h1>Loading Product Data</h1>
   } else {

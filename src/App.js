@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Switch, Route, useLocation, Link } from 'react-router-dom';
 
 import { client } from './ShopifyAPI/client'
+import stickyHeader from './components/Utilities/scrollableHeader';
 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -21,6 +22,9 @@ export const CheckoutContext = React.createContext();
 
 const App = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [headerData, setHeaderData] = useState({
+    imageUrl: "https://cdn.shopify.com/s/files/1/0288/6926/3438/files/IMG_7907_3024x.JPG?v=1593068622"
+  })
   const [checkout, setCheckout] = useState({
     id: '',
     webUrl: '',
@@ -30,14 +34,12 @@ const App = () => {
       quantity: 0
     }
   });
-  const [headerData, setHeaderData] = useState({
-    imageUrl: "https://cdn.shopify.com/s/files/1/0288/6926/3438/files/IMG_7907_3024x.JPG?v=1593068622"
-  })
-    let location = useLocation();
+
+
+  let location = useLocation();
 
   const toggleMenu = () => {
     isOpen ? setIsOpen(false) : setIsOpen(true);
-
   }
 
   const addToCart = (quantity, variantId) => {
@@ -163,6 +165,7 @@ const App = () => {
       }
     }
     initCheckout();
+    stickyHeader('nav-other');
   }, [])
 
   if (checkout === undefined) {
@@ -181,7 +184,7 @@ const App = () => {
         setIsOpen: setIsOpen
       }}>
         {
-          location.pathname === "/painting" || location.pathname === "/accessories" || location.pathname === '/shoes'   ? <Header location={location} header={headerData}/> : <CategoryHeader className={"nav-other"}/> 
+          location.pathname === "/painting" || location.pathname === "/accessories" || location.pathname === '/shoes'   ? <Header location={location} header={headerData}/> : <CategoryHeader className={'nav-other'}/> 
         }
         <Switch location={location}>
           <Route path='/' exact><Landing setHeader={setHeaderData} header={headerData}/></Route>
@@ -194,7 +197,6 @@ const App = () => {
           <Route path='/:product'><ProductDetailModal location={location} /></Route>
         </Switch>
         <Footer checkout={checkout} />
-        {console.log(isOpen)}
         {
           isOpen && location.pathname !== "/cart" ? <CategoryHeader isOpen={isOpen} className={"nav-list"} /> : <></>
         }

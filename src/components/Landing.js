@@ -1,8 +1,7 @@
-import { useEffect, useState, useContext } from "react"
+import { useEffect, useContext } from "react"
 import { Link } from 'react-router-dom';
 import { CheckoutContext } from '../App';
 import '../css/landing.css'
-import ImageGallary from 'react-image-gallery';
 import CategoryHeader from './CategoryHeader'
 import Featured from './Featured';
 import Hero from './Hero';
@@ -27,7 +26,7 @@ const Landing = (props) => {
       <section className='landing-section'>
         <div className='hero-top'>
           <h1>{props.header.title}</h1>
-          <button type="button">{props.header.link}</button>
+          <div className='btn-container'><button className='landing-button' type="button">{props.header.link}</button></div>
         </div>
         <div className='thumbnail-categories'>
           <CategoryHeader className='thumbnails' />

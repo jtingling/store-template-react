@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import '../css/support.css'
 const Support = (props) => {
 
     useEffect(() => {
@@ -7,11 +8,10 @@ const Support = (props) => {
         })
         window.scroll(0, 0)
     }, [])
-
     return (
         <section>
-            <h1>FAQ</h1>
-            <p>
+            <h1 className='faq-title'>FAQ</h1>
+            <p className='support-text'>
                 When shopping at Bibisama, you might have some inquiries about our payment methods,
                 shipping, returns, or exchanges on our apparel and accessories. Below are some of the
                 most frequently asked questions from our customers. If you still have questions, please

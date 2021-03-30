@@ -26,7 +26,7 @@ const Featured = (props) => {
           props.productType === "SHOES" ? <h2 className={props.className[0]}>FEATURED</h2> : <></>
         }
         {
-          props.productType === "ACCESSORIES" ? <h2 className={props.className[0]}>Stylish Jackets &amp; Sweaters</h2> : <></>
+          props.productType === "ACCESSORIES" ? <h2 className={props.className[0]}>Stylish Accessories</h2> : <></>
         }
 
         <div className={props.className[1]}>

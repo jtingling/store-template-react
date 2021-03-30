@@ -1,5 +1,29 @@
+@import "./buttons";
+@import "./layout";
+@function getWidth($deviceType) {
+    @return map-get($widthRanges, $deviceType);
+}
 h1 {
     color: black;
     text-align: center;
-    margin: 0 auto;
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 48px;
+}
+h3 {
+    font-size: 26px;
+}
+.aboutus-text {
+    @include layout;
+    text-align: left;
+    font-size: 22px;
+    padding: 2% 2%;
+    line-height: 1.8;
+}
+
+@media only screen and (max-width: getWidth("mobile")) {
+    .aboutus-text {
+        font-size: 16px;
+    }
 }

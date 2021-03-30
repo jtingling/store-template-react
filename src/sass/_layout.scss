@@ -5,3 +5,10 @@ $page-width: 1300px;
     max-width: $page-width;
     margin: 0 auto;
 }
+@mixin stickyheader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+}

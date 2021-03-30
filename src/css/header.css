@@ -1,4 +1,4 @@
-#header-template {
+.header-template {
   height: 350px;
   width: 100%;
   background-size: cover;
@@ -7,8 +7,9 @@
   overflow: auto;
 }
 
-h1 {
-  font-size: 48px;
+.header-title {
+  margin-top: 5%;
+  font-size: 56px;
   text-align: center;
   color: black;
 }

@@ -35,7 +35,7 @@ export const PageNavigation = (props) => {
                         className='left-chevron'
                     />
                 </div>
-                <p>
+                <p className="page-number">
                     {
                         props.pageRange(props.numProducts).map((page, idx) => {
                             return <span key={idx} className={pageNumber === page ? "highlight" : "no-highlight"}>{page}</span>

@@ -394,6 +394,10 @@
 }
 
 .hero-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
   background-image: url("https://cdn.shopify.com/s/files/1/0288/6926/3438/files/small6_2808x.png?v=1607901744 2808w");
   background-size: cover;
   background-repeat: no-repeat;
@@ -403,25 +407,25 @@
   height: 1000px;
 }
 .hero-top h1 {
-  position: relative;
-  top: 500px;
-  left: 0;
   font-size: 48px;
   text-align: center;
   color: white;
+  width: 100%;
+  height: auto;
 }
-.hero-top button {
-  position: relative;
-  top: 550px;
-  left: 800px;
+
+.btn-container {
+  margin-top: -20%;
+}
+
+.landing-button {
   cursor: pointer;
   font-size: 18px;
   background-color: black;
   color: white;
   border-radius: 50px;
-  padding: 1% 1%;
-  width: 10%;
-  margin: 0 auto;
+  padding: 20px 25px;
+  width: 200px;
 }
 
 .video-container {
@@ -499,6 +503,18 @@ iframe {
 }
 
 @media only screen and (max-width: 768px) {
+  .hero-top {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 40%;
+    margin-bottom: 5%;
+    width: 100%;
+    height: 500px;
+  }
+  .hero-top h1 {
+    top: 40%;
+  }
+
   iframe {
     width: 90%;
     height: 360px;

@@ -1,4 +1,5 @@
 @import "./variables";
+@import "./layout";
 
 @function getWidth($deviceType) {
     @return map-get($widthRanges, $deviceType);

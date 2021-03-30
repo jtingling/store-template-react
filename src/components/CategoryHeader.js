@@ -1,12 +1,11 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CheckoutContext } from '../App';
 import '../css/categoryHeader.css';
 
 const CategoryHeader = (props) => {
     let context = useContext(CheckoutContext);
-
-    const toggleNavLinks = () => {
+    const navBar = () => {
         if (window.innerWidth < 768 && props.className === "nav-list") {
             return (
                 <nav className={props.className}>
@@ -39,7 +38,7 @@ const CategoryHeader = (props) => {
             )
         }
     }
-    return toggleNavLinks();
+    return navBar();
 }
 
 export default CategoryHeader;

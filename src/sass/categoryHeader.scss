@@ -13,7 +13,7 @@ a:visited, a:link {
 .nav-other-container {
     display: flex;
     justify-content: space-evenly;
-    max-width: 1300px;
+    width: 100%;
     margin: 0 auto;
 }
 .nav-list {
@@ -92,6 +92,11 @@ a:visited, a:link {
         width: 240px;
         height: 240px;
     }
+}
+.sticky {
+    @include stickyheader;
+    background-color: black;
+    
 }
 
 @media only screen and (max-width: getWidth("mobile")) {

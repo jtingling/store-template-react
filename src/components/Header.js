@@ -1,4 +1,4 @@
-
+import stickyHeader from './Utilities/scrollableHeader';
 import { useState, useContext, useEffect } from 'react'
 import { faRoad } from '@fortawesome/free-solid-svg-icons';
 import CategoryHeader from './CategoryHeader'
@@ -9,15 +9,17 @@ const Header = (props) => {
     useEffect(()=>{
         setHeaderImage(props.header.imageUrl);
     }, [props.header.imageUrl])
+    useEffect(()=>{
+        stickyHeader('nav-other');
+    }, [])
     return (
-        <header id="header-template" style={{ backgroundImage: `url(${headerImage})`}}>
-
+        <header className="header-template" style={{ backgroundImage: `url(${headerImage})`}}>
             <div className='header-text-container'>
-                <h1>{props.header.title}</h1>
                 <div className='header-content'>
                     <div className='nav-container'>
-                        <CategoryHeader className={"nav-header"} />
+                        <CategoryHeader className={"nav-other"} />
                     </div>
+                    <h1 className="header-title">{props.header.title}</h1>
                 </div>
             </div>
             
