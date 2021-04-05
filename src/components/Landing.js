@@ -1,26 +1,25 @@
 import { useEffect, useContext } from "react"
 import { Link } from 'react-router-dom';
-import { CheckoutContext } from '../App';
 import '../css/landing.css'
 import CategoryHeader from './CategoryHeader'
 import Featured from './Featured';
 import Hero from './Hero';
+import Loading from './Loading';
 
 const Landing = (props) => {
-  let context = useContext(CheckoutContext);
   useEffect(() => {
     props.setHeader({
       title: "Welcome to the Template Store!",
       text: {
-        a: "Some eye-catching text!",
-        b: "something something"
+        a: "...",
+        b: "..."  
       },
       link: <Link to='/painting'>J A C K E T S</Link>,
       imageUrl: "https://cdn.shopify.com/s/files/1/0288/6926/3438/files/IMG_7907_3024x.JPG?v=1593068622"
     })
   }, [])
   if (props.header.title === undefined) {
-    return <h1>Loading...</h1>
+    return <Loading/>
   } else {
     return (
       <section className='landing-section'>
@@ -34,7 +33,7 @@ const Landing = (props) => {
         <div className='video-container'>
           <h2 className='video-title'>van gogh x bibisama</h2>
           <div>
-            <iframe src="//www.youtube.com/embed/YNdS5wqMj7c?rel=0&amp;showinfo=0&amp;vq=720" frameborder="0" allowfullscreen=""></iframe>
+            <iframe id="featured-video" src="//www.youtube.com/embed/YNdS5wqMj7c?rel=0&amp;showinfo=0&amp;vq=720" frameborder="0" allowfullscreen=""></iframe>
           </div>
           <div>
             <h2 className='video-subtitle'>STARRY NIGHT WANDERER BOMBER JACKET</h2>
@@ -54,8 +53,7 @@ const Landing = (props) => {
           <div className="page-width">
             <div className={"feature-text"}>
               <h2>Craftsmanship Meets Style in Anime Streetwear</h2>
-              <p>At <a href="https://bibisama.com/pages/about" title="https://bibisama.com/pages/about" className="text-link">
-                Bibisama</a>, we focus on combining beautiful artwork with quality materials. The result is Asian and anime
+              <p>At <Link to='/aboutus'><span className="text-link">Bibisama</span></Link>, we focus on combining beautiful artwork with quality materials. The result is Asian and anime
                 pop culture-inspired clothing that’s comfortable to wear at home, and stylish in the streets.&nbsp;<br />
               </p>
               <p>Our products are meticulously crafted to ensure durability and serve as a timeless companion to your ensembles.

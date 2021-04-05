@@ -1,16 +1,23 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
-a:visited, a:link {
-  text-decoration: none;
-  color: white;
-}
-
 .nav-other {
   background-color: black;
 }
 
-.nav-other-container {
+.nav-other-nav-container {
+  max-width: 1300px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-evenly;
+}
+.nav-other-nav-container a:visited, .nav-other-nav-container a:link {
+  text-decoration: none;
+  color: white;
+}
+
+.nav-list-nav-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   width: 100%;
   margin: 0 auto;
 }
@@ -25,6 +32,9 @@ a:visited, a:link {
   margin: 0 auto;
   background-color: black;
   border-radius: 50px 50px 0 0;
+}
+.nav-list a {
+  width: 100%;
 }
 .nav-list a:link, .nav-list a:visited {
   text-decoration: underline;

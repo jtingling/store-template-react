@@ -13,7 +13,9 @@
 }
 .thumbnail-categories {
     @include layout;
+    @include linkstyle;
     height: auto;
+
 }
 .hero-top {
     display: flex;
@@ -34,6 +36,7 @@
         width: 100%;
         height: auto;
     }
+    @include linkstyle; 
 }
 .btn-container {
     margin-top: -20%;
@@ -55,7 +58,7 @@
     width: 100%;
     height: auto;
 }
-iframe {
+#featured-video {
     display: block;
     margin: 0 auto;
     width: 90%;

@@ -1,12 +1,54 @@
 @import "./layout";
+@import "./buttons";
 
+@function getWidth($deviceType) {
+    @return map-get($widthRanges, $deviceType);
+}
+
+.featured-content {
+    margin-top: 5%;
+}
 .feature-container-shoes {
+    position: sticky;
     overflow: auto;
     white-space: nowrap;
     overflow-x: scroll;
     margin-bottom: 5%;
+    z-index: 1;
+}
+#left-arrow, #right-arrow {
+    cursor: pointer;
+    border-style: solid;
+    border-color: black;
+    border-radius: 50%;
+    background-color: transparent;
+    outline: 0;
+    position: absolute;
+    font-size: 56px;
+    padding: 10px 15px;
+    z-index: 5;
+    top: 150px;
+}
+#left-arrow {
+    left: 5vw;
+}
+#right-arrow {
+    left: 90vw;
+}
+#fixed-width {
+    position: sticky;
+    left: 0;
+    height: auto;
+    z-index: 0;
+}
+.feature-container {
+    position: relative;
 }
 .feature-title-shoes {
+    font-size: 44px;
+    text-align: center;
+}
+.feature-title-accessories {
     font-size: 44px;
     text-align: center;
 }
@@ -16,7 +58,17 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
-.feature-title-accessories {
-    font-size: 44px;
-    text-align: center;
+
+@media only screen and (max-width: getWidth(("mobile"))) {
+    #left-arrow, #right-arrow {
+        visibility: hidden;
+    }
 }
+
+@media only screen and (max-width: getWidth(("laptop"))) {
+    #left-arrow, #right-arrow {
+        font-size: 36px;
+        top: 100px;
+    }
+}
+

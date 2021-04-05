@@ -100,17 +100,12 @@ button {
     }
 }
 
-#description {
-    p {
-        max-width: 430px;
-    }
-}
+
 
 @media only screen and (min-width: getWidth("mobile")) {
     .modal-window {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        grid-template-rows: 1fr 1fr;
         column-gap: 40px;
     }
 }

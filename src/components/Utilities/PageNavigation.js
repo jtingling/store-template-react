@@ -1,11 +1,13 @@
 import '../../css/page-navigation.css';
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleRight, faAngleLeft } from '@fortawesome/free-solid-svg-icons';
 import { queryOptions } from '../../ShopifyAPI/queries';
+import { CheckoutContext } from '../../App';
 
 export const PageNavigation = (props) => {
     const [pageNumber, setPageNumber] = useState(1);
+    const context = useContext(CheckoutContext);
 
     const incrementPage = (addOne) => {
         props.page("after");
@@ -26,6 +28,11 @@ export const PageNavigation = (props) => {
             setPageNumber(pageNumber - removeOne)
         }
     }
+    
+    useEffect(()=>{
+        context.scroll();
+      }, [pageNumber])
+
     return (
         <div>
             <nav className='pagination-container'>

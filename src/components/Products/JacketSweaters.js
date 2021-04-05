@@ -31,8 +31,8 @@ const JacketSweaters = (props) => {
         props.setHeader({
             title: "Jackets & Sweaters",
             text: {
-                a: "Some eye-catching text!",
-                b: "something something"
+                a: "...",
+                b: "..."
             },
             link: <Link to='/aboutus'>Featured Product!</Link>,
             imageUrl: "https://cdn.shopify.com/s/files/1/0288/6926/3438/collections/bombers1_1080x.png?v=1596623840"
@@ -72,7 +72,7 @@ const JacketSweaters = (props) => {
                     From the cotton types down to the zippers, we’ve selected only the best products to use in our anime bomber jackets and outerwear. These are trendy jackets you
                     can be proud to show off every day.
                 </p>
-                <section>
+                <section className="jacketSweaters-section">
                     {
                         jacketSweatersData.edges.map((product) => {
                             return (

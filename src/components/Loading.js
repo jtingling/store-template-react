@@ -1,9 +1,10 @@
 import React from 'react';
+import { CheckoutContext } from '../App';
 
 const Loading = () => {
   return (
     <div className="loading">
-      <h1>loading...</h1>
+      <img src='../assets/logo.png' alt="logo"/>
     </div>
   );
 };

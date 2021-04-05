@@ -69,7 +69,7 @@ const Accessories = (props) => {
                     Each piece is hand embroidered and we use state of the art techniques that make the designs pop and come to life.
                     12 hours worth of effort on a single item makes our embroidered streetwear apparel a work of art for your wardrobe.
                 </p>
-                <section>
+                <section className="accessories-section">
                     {
                         accessoryData.edges.map((product) => {
                             return (

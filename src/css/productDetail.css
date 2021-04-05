@@ -481,15 +481,10 @@ button {
   font-size: xx-large;
 }
 
-#description p {
-  max-width: 430px;
-}
-
 @media only screen and (min-width: 768px) {
   .modal-window {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
     column-gap: 40px;
   }
 }

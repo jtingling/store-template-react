@@ -9,10 +9,15 @@
     background-color: hsl(0,0%,96%);
     margin: 0 auto;
 }
+
 body {
     margin: 0;
+    scroll-behavior: smooth;
 }
-
+.loading {
+    margin: 0 auto;
+    width: 100%;
+}
 section {
     display: flex;
     flex-wrap: wrap;
@@ -35,6 +40,9 @@ section {
 .product-img {
     max-width: 100%;
     height: auto;
+}
+.shirt-section, .jacketSweaters-section, .accessories-section {
+    @include layout;
 }
 
 @media only screen and (max-width: getWidth("mobile")) {

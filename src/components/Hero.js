@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import { Link } from 'react-router-dom';
 import { getStoreData } from '../ShopifyAPI/storefront-api';
 import { query } from '../ShopifyAPI/queries'
+import { CheckoutContext } from '../App'
 import '../css/hero.css'
 
 const Hero = (props) => {
   const [featuredItem, setFeaturedItem] = useState(false);
-
+  const context = useContext(CheckoutContext);
   useEffect(() => {
     try {
       getStoreData(query(...["first", undefined, undefined, `${props.productType}`])).then((queryData) => { setFeaturedItem(queryData.data.products) })
@@ -31,7 +32,7 @@ const Hero = (props) => {
               of officially licensed bomber jackets.
               </p>
             </div>
-            <button type='button'><Link
+            <button onClick={() => context.scroll() }type='button'><Link
               to={{
                 pathname: `/${featuredItem.edges[3].node.handle}`,
                 state: { productData: featuredItem.edges[3].node}

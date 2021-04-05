@@ -1,10 +1,9 @@
 .header-template {
-  height: 350px;
+  height: 600px;
   width: 100%;
   background-size: cover;
-  background-position: 50% 50%;
+  background-position: 50% 45%;
   background-repeat: no-repeat;
-  overflow: auto;
 }
 
 .header-title {

@@ -3,16 +3,23 @@
 @function getWidth($deviceType) {
     @return map-get($widthRanges, $deviceType);
 }
-a:visited, a:link {
-    text-decoration: none;
-    color: white;
-}
+
 .nav-other {
     background-color: black;
 }
-.nav-other-container {
+.nav-other-nav-container {
+    @include layout;
     display: flex;
     justify-content: space-evenly;
+    a:visited, a:link {
+        text-decoration: none;
+        color: white;
+    }
+}
+.nav-list-nav-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     width: 100%;
     margin: 0 auto;
 }
@@ -22,12 +29,15 @@ a:visited, a:link {
     left: 0;
     right: 0;
     max-width: 500px;
-    width: auto; 
+    width: auto;
     margin: 0 auto;
     background-color: black;
     border-radius: 50px 50px 0 0;
+    a {
+        width: 100%;
+    }
     a:link, a:visited {
-        text-decoration: underline;     
+        text-decoration: underline;
         color: white;  
         text-align: center;
         padding: 0;

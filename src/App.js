@@ -11,6 +11,7 @@ import AboutUs from './components/AboutUs';
 import Support from './components/Support';
 import Cart from './components/Cart';
 import Landing from './components/Landing';
+import Loading from './components/Loading';
 import Shirts from './components/Products/Shirts';
 import Accessories from './components/Products/Accessories';
 import JacketSweaters from './components/Products/JacketSweaters';
@@ -34,7 +35,6 @@ const App = () => {
       quantity: 0
     }
   });
-
 
   let location = useLocation();
 
@@ -123,6 +123,10 @@ const App = () => {
     return quantity;
   }
 
+  const scrolltoTop = () => {
+    window.scroll({top: 0, left: 0, behavior: 'smooth'});
+  }
+
   useEffect(() => {
     let persistCartId = window.localStorage;
     const initCheckout = async () => {
@@ -168,8 +172,9 @@ const App = () => {
     stickyHeader('nav-other');
   }, [])
 
+
   if (checkout === undefined) {
-    return <h1>Loading...</h1>
+    return <Loading/>
   } else {
     return (
       <CheckoutContext.Provider value={{
@@ -181,10 +186,11 @@ const App = () => {
         quantity: getCartQuantity(),
         toggleMenu: toggleMenu,
         isOpen: isOpen,
-        setIsOpen: setIsOpen
+        setIsOpen: setIsOpen,
+        scroll: scrolltoTop
       }}>
         {
-          location.pathname === "/painting" || location.pathname === "/accessories" || location.pathname === '/shoes'   ? <Header location={location} header={headerData}/> : <CategoryHeader className={'nav-other'}/> 
+          location.pathname === "/painting" || location.pathname === "/accessories" || location.pathname === '/shoes' ? <Header location={location} header={headerData}/> : <CategoryHeader className={'nav-other'}/> 
         }
         <Switch location={location}>
           <Route path='/' exact><Landing setHeader={setHeaderData} header={headerData}/></Route>

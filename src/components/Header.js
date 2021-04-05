@@ -1,6 +1,5 @@
 import stickyHeader from './Utilities/scrollableHeader';
-import { useState, useContext, useEffect } from 'react'
-import { faRoad } from '@fortawesome/free-solid-svg-icons';
+import { useState, useEffect } from 'react'
 import CategoryHeader from './CategoryHeader'
 import '../css/header.css'
 const Header = (props) => {

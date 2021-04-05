@@ -392,6 +392,10 @@
   margin: 0 auto;
   height: auto;
 }
+.thumbnail-categories a:visited, .thumbnail-categories a:link {
+  text-decoration: none;
+  color: white;
+}
 
 .hero-top {
   display: flex;
@@ -412,6 +416,10 @@
   color: white;
   width: 100%;
   height: auto;
+}
+.hero-top a:visited, .hero-top a:link {
+  text-decoration: none;
+  color: white;
 }
 
 .btn-container {
@@ -438,7 +446,7 @@
   height: auto;
 }
 
-iframe {
+#featured-video {
   display: block;
   margin: 0 auto;
   width: 90%;

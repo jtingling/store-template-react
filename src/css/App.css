@@ -7,6 +7,12 @@
 
 body {
   margin: 0;
+  scroll-behavior: smooth;
+}
+
+.loading {
+  margin: 0 auto;
+  width: 100%;
 }
 
 section {
@@ -32,6 +38,11 @@ section {
 .product-img {
   max-width: 100%;
   height: auto;
+}
+
+.shirt-section, .jacketSweaters-section, .accessories-section {
+  max-width: 1300px;
+  margin: 0 auto;
 }
 
 @media only screen and (max-width: 768px) {

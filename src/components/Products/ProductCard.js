@@ -1,13 +1,13 @@
 import '../../css/product-card.css'
 import { Link, useLocation } from 'react-router-dom';
 import stickyHeader from '../Utilities/scrollableHeader.js';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { CheckoutContext } from '../../App';
 
 const ProductCard = (product) => {
   const [visibility, setVisibility] = useState(false);
   const [show, setShow] = useState(false);
-
-  let location = useLocation();
+  let context = useContext(CheckoutContext);
 
   const showText = () => {
     setVisibility(true);
@@ -19,12 +19,13 @@ const ProductCard = (product) => {
 
   const showModal = () => {
     setShow(!show);
-
   }
+
 
   useEffect(()=>{
     stickyHeader('nav-other');
   }, [])
+ 
 
   if (product.product === undefined) {
     return <h1>Loading Product Data</h1>
@@ -34,7 +35,7 @@ const ProductCard = (product) => {
         <article className='card-container'
           onMouseOver={() => { showText(); }}
           onMouseOut={() => { hideText(); }}
-          onClick={e => { showModal(); }}>
+          onClick={e => { showModal(); context.scroll(); }}>
           <Link
             key={product.product.id}
             to={{

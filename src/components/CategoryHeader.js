@@ -27,7 +27,8 @@ const CategoryHeader = (props) => {
         } else {
             return (
                 <nav className={props.className}>
-                    <div className='nav-other-container'>
+                    <div className={props.className + '-' + 'nav-container'}>
+                        <Link to="/"><h5 onClick={() => context.setIsOpen(false)} className='top-nav-links'>Landing</h5></Link>
                         <Link to="/shoes"><h5 onClick={() => context.setIsOpen(false)} className='top-nav-links'>Shirts</h5></Link>
                         <Link to="/painting"><h5 onClick={() => context.setIsOpen(false)} className='top-nav-links'>Jacket + Sweaters</h5></Link>
                         <Link to="/accessories"><h5 onClick={() => context.setIsOpen(false)} className='top-nav-links'>Accessories</h5></Link>

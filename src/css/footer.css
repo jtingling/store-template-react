@@ -1,15 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
 footer {
-  display: grid;
-  grid-template-columns: 33% 33% 33%;
-  grid-template-rows: 1fr;
-  margin-left: 5%;
-  margin-right: 5%;
+  max-width: 1300px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  grid-template-rows: 1fr;
 }
 
 .footer-container {
   margin-top: 5%;
-  margin-bottom: 5%;
   max-width: 100%;
 }
 
@@ -41,7 +40,7 @@ footer {
 
 .social-media-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .social-media {

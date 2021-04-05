@@ -12,3 +12,9 @@ $page-width: 1300px;
     width: 100%;
     z-index: 20;
 }
+@mixin linkstyle {
+    a:visited, a:link {
+        text-decoration: none;
+        color: white;
+    }
+}

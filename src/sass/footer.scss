@@ -1,17 +1,19 @@
+@import "./variables";
+@import "./layout";
+
+@function getWidth($deviceType) {
+    @return map-get($widthRanges, $deviceType);
+}
 footer {
+    @include layout;
     display: grid;
-    grid-template-columns: 33% 33% 33%;
+    grid-template-columns: 1fr 1fr auto;
     grid-template-rows: 1fr;
-    margin-left: 5%;
-    margin-right: 5%;   
-    margin: 0 auto; 
 }
 
 .footer-container {
     margin-top: 5%;
-    margin-bottom: 5%;
     max-width: 100%;
-
 }
 
 .footer-about {
@@ -42,7 +44,7 @@ footer {
 
 .social-media-container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .social-media {
@@ -66,7 +68,7 @@ footer {
     text-align: left;
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: getWidth(("mobile"))) {
     .link-table {
         margin-top: -5%;
         font-size: medium;

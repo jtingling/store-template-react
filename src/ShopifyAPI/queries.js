@@ -6,7 +6,6 @@ export const queryOptions = {
 }
 
 export const query = (direction, position = '', cursor = '', productType) => {
-  console.log(productType);
   let query = false;
   if (!cursor && !position) {
     query = `first: ${queryOptions.nProducts}`

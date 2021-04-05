@@ -90,7 +90,7 @@ const ProductDetailModal = (props) => {
                             <span><FontAwesomeIcon icon={isHidden[1] ? faAngleDown : faAngleUp} /></span>
                             </button>
                             {
-                                isHidden[1] ? <code hidden>Sizing chart image goes here</code> : <code>Sizing chart image goes here</code>
+                                isHidden[1] ? <code hidden>Sizing chart image goes here</code> : <img src="https://cdn.shopify.com/s/files/1/0288/6926/3438/files/shirt_sizing_chart_480x480_12bf5e0b-48cd-40e5-8c04-bbb74429b713_480x480.png?v=1598569392" alt="" width="480x480" height="480x480"/>
                             }
                             <button type='button' className='dropdown' onClick={() => setHidden([isHidden[0], isHidden[1], !isHidden[2], isHidden[3]])}>
                                 Care Instructions
