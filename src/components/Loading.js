@@ -1,5 +1,4 @@
 import React from 'react';
-import { CheckoutContext } from '../App';
 
 const Loading = () => {
   return (

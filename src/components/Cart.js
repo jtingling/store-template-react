@@ -16,7 +16,6 @@ const Cart = (props) => {
     } else {
         return (
             <>
-            {console.log(props.location)}
                 <section className="cart">
                     <h1 className='cart-title'>CART</h1>
                     <div className='cart-labels'>
