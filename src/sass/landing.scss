@@ -93,9 +93,9 @@
     }
     .feature-text {
         display: grid;
-        grid-template-columns: 850px;
+        grid-template-columns: 768px;
         grid-template-rows: 125px 150px 300px;
-        justify-content: center;
+        justify-items: center;
         align-items: center;
         h2 {
             font-size: 22px;
@@ -142,11 +142,10 @@
             height: 750px;
         }
         .feature-text {
-            display: grid;
-            grid-template-columns: 100%;
-            grid-template-rows: 15% 35% 50%;
+            display: flex;
+            flex-wrap: wrap;
             justify-content: center;
-            align-content: center;
+            align-items: center;
             h2 {
                 font-size: 22px;
                 text-align: center;

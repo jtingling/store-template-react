@@ -10,18 +10,14 @@ const Footer = (props) => {
     return (
         <div className='footer-container'>
             <footer>
-                <div>
-                    <div className='footer-about'>
-                        <div className='logo-container'>
-                            <img src={logo} alt={logo} className='logo-footer'></img>
-                        </div>
-                        <div className='footer-text-container'>
-                            <p className='footer-text'>
-                                Bibisama is an Otaku clothing brand that blends the best of the culture and art style with unique
-                                clothing designs you won't find anywhere else.
+                <div className='logo-container'>
+                    <img src={logo} alt={logo} className='logo-footer'></img>
+                </div>
+                <div className='footer-text-container'>
+                    <p className='footer-text'>
+                        Bibisama is an Otaku clothing brand that blends the best of the culture and art style with unique
+                        clothing designs you won't find anywhere else.
                             </p>
-                        </div>
-                    </div>
                 </div>
                 <div className='link-table'>
                     <div className='shop-table'>

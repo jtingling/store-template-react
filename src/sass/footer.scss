@@ -7,8 +7,19 @@
 footer {
     @include layout;
     display: grid;
-    grid-template-columns: 1fr 1fr auto;
-    grid-template-rows: 1fr;
+    grid-template-columns: 25% 50% 25%;
+    grid-template-rows: 50% 50%;
+    grid-template-areas:
+        "logo text-container link-table"
+        "social-media social-media social-media";
+    justify-items: center;
+    align-items: start;
+}
+.logo-container {
+    grid-area: logo;
+}
+.footer-text-container {
+    grid-area: text-container;
 }
 
 .footer-container {
@@ -19,12 +30,10 @@ footer {
 .footer-about {
     display: flex;
     flex-wrap: nowrap;
-    align-self: start;
-    margin-bottom: -5%;
 }
 
 .footer-text {
-    font-size: small;
+    font-size: large;
     text-align: left;
 }
 
@@ -38,13 +47,15 @@ footer {
 
 .link-table {
     display: flex;
-    text-align: left;
+    grid-area: link-table;
+    text-align: center;
     justify-content: center;
 }
 
 .social-media-container {
     display: flex;
     justify-content: flex-start;
+    grid-area: social-media;
 }
 
 .social-media {
@@ -52,10 +63,6 @@ footer {
     padding-left: 5px;
     padding-right: 5px;
 
-}
-
-.logo-container {
-    margin-left: 10%;
 }
 
 .logo-footer {
@@ -78,39 +85,32 @@ footer {
     }
     footer {
         display: grid;
-        grid-template-columns: 100%;
-        grid-template-rows: 1fr;
-        height: auto;
+        grid-template-columns: 33% 66%;
+        grid-template-rows: 50% 50% 50%;
+        grid-template-areas:
+            "logo text-container"
+            "logo link-table"
+            "social-media social-media";
+        justify-items: center;
+        align-items: start;
     }
     .logo-container {
-        margin-top: -3%;
-        width: 50%;
-        height: auto;
-    }
-    
+        grid-area: logo;
+    }  
     .footer-text-container {
-        margin-top: 0%;
-        width: 50%;
+        grid-area: text-container;
     }
     .footer-text {
-        font-size: small;
-    }
-    .footer-about {
-        flex-wrap: wrap;
-        align-items: start;
-        justify-content: space-around;
-    }
-    .logo-container {
-        margin-left: 0%;
+        font-size: medium;
     }
     .link-table {
-        display: flex;
-        flex-wrap: nowrap;
+        grid-area: link-table;
+        justify-self: start;
     }
     .shop-table, .store-table {
         text-align: center;
     }
     .social-media-container {
-        margin-top: 3%;
+        grid-area: social-media;
     }
 }

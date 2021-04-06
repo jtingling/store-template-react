@@ -19,7 +19,6 @@
   flex-wrap: wrap;
   justify-content: center;
   width: 100%;
-  margin: 0 auto;
 }
 
 .nav-list {
@@ -32,6 +31,7 @@
   margin: 0 auto;
   background-color: black;
   border-radius: 50px 50px 0 0;
+  z-index: 10;
 }
 .nav-list a {
   width: 100%;
@@ -99,12 +99,6 @@
   height: 360px;
 }
 
-@media only screen and (max-width: 1024px) {
-  .shirts, .painting, .accessories {
-    width: 240px;
-    height: 240px;
-  }
-}
 .sticky {
   position: fixed;
   top: 0;
@@ -114,6 +108,12 @@
   background-color: black;
 }
 
+@media only screen and (max-width: 1024px) {
+  .shirts, .painting, .accessories {
+    width: 240px;
+    height: 240px;
+  }
+}
 @media only screen and (max-width: 768px) {
   .nav-header {
     display: none;

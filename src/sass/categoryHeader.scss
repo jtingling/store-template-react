@@ -21,7 +21,6 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    margin: 0 auto;
 }
 .nav-list {
     position: fixed;
@@ -33,6 +32,7 @@
     margin: 0 auto;
     background-color: black;
     border-radius: 50px 50px 0 0;
+    z-index: 10;
     a {
         width: 100%;
     }
@@ -96,19 +96,17 @@
     width: 360px;
     height: 360px;
 }
-
+.sticky {
+    @include stickyheader;
+    background-color: black;
+    
+}
 @media only screen and (max-width: getWidth("laptop")) {
     .shirts, .painting, .accessories {
         width: 240px;
         height: 240px;
     }
 }
-.sticky {
-    @include stickyheader;
-    background-color: black;
-    
-}
-
 @media only screen and (max-width: getWidth("mobile")) {
     .nav-header{
         display: none;
