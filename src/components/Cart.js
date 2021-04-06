@@ -12,7 +12,7 @@ const Cart = (props) => {
     }, [])
 
     if (props.checkout === undefined) {
-        return <h1>loading cart</h1>
+        return <></>
     } else {
         return (
             <>

@@ -63,7 +63,7 @@ const JacketSweaters = (props) => {
     }, [cursor])
 
     if (!jacketSweatersData) {
-        return <h1>Data not ready yet.</h1>
+        return <></>
     } else {
         return (
             <>

@@ -28,7 +28,7 @@ const ProductCard = (product) => {
  
 
   if (product.product === undefined) {
-    return <h1>Loading Product Data</h1>
+    return <></>
   } else {
     return (
       <>

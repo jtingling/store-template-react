@@ -16,7 +16,7 @@ const Hero = (props) => {
     }
   }, [])
   if (!featuredItem) {
-    return <h1>Data not ready yet.</h1>
+    return <></>
   } else {
     return (
       <div className='hero-container'>

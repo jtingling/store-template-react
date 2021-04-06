@@ -61,7 +61,7 @@ const Accessories = (props) => {
         }
     }, [cursor])
     if (!accessoryData) {
-        return <h1>Data not ready yet.</h1>
+        return <></>
     } else {
         return (
             <>

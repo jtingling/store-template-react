@@ -36,7 +36,7 @@ const ProductDetailModal = (props) => {
         setHidden([true, true, true, true])
     }, [])
     if (productData === undefined) {
-        return <h1>Loading Data...</h1>
+        return <></>
     } else {
         return (
             <>

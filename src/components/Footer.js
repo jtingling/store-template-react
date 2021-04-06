@@ -2,10 +2,13 @@ import '../css/footer.css'
 import logo from "../assets/logo.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTwitter, faInstagram, faShopify } from '@fortawesome/free-brands-svg-icons';
+import { CheckoutContext } from '../App';
+import { useContext } from 'react'
 import { Link } from 'react-router-dom';
 
-
 const Footer = (props) => {
+
+    const context = useContext(CheckoutContext);
 
     return (
         <div className='footer-container'>
@@ -29,7 +32,7 @@ const Footer = (props) => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td><Link to="/">Landing</Link></td>
+                                    <td><Link to="/" onClick={() => context.scroll()}>Landing</Link></td>
                                 </tr>
                                 <tr>
                                     <td><Link to="/shoes">Shirts</Link></td>

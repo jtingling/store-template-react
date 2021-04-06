@@ -1,6 +1,6 @@
 import './css/app.css'
 import React, { useEffect, useState } from "react";
-import { Switch, Route, useLocation, Link } from 'react-router-dom';
+import { Switch, Route, useLocation } from 'react-router-dom';
 
 import { client } from './ShopifyAPI/client'
 import stickyHeader from './components/Utilities/scrollableHeader';
