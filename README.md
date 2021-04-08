@@ -1,12 +1,10 @@
-# Getting Started with Create React App
+# React Shopify Storefront
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Introduction
 
-## Available Scripts
+The purpose of this project is to learn ReactJs by creating a UI for the Shopify platform. It utilizes the Shopify Buy SDK to handle checkout and cart functionality along with custom graphQL queries to handle product data fetching.
 
-In the project directory, you can run:
-
-### `yarn start`
+## Technologies
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
