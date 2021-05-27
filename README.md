@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The purpose of this project is to learn ReactJs by creating a UI for the Shopify platform. It utilizes the Shopify Buy SDK to handle checkout and cart functionality along with custom graphQL queries to handle product data fetching. This project uses the create-react-app CLI to build the project and to launch the development server.
+The purpose of this project is to learn ReactJs by creating an e-commerce store for the Shopify platform. It utilizes the Shopify Buy SDK to handle checkout and cart functionality along with custom graphQL queries to handle product data fetching.
 
 ## Main Technologies
 
@@ -17,6 +17,4 @@ The purpose of this project is to learn ReactJs by creating a UI for the Shopify
 * graphQL 15.5.0
 * Font-Awesome
 
-## Launch Instructions
-
-Ensure at least node version >10.6 is installed and npm verison >5.6. Then clone this project and type in the project root directory 'npm install' to install dependencies. To launch the development server with the CLI type 'npm start'.
+* Live store: https://shopify-storefront-template.web.app/
